@@ -41,10 +41,10 @@ export default function WorkCarousel() {
     return (
         <ScrollControls pages={2} damping={0.3}>
             <group position={[0, 0, 0]}>
-                <CarouselItem index={0} position={[0, 2, 0]} url="/img1.jpg" />
-                <CarouselItem index={1} position={[0, -1, 0]} url="/img2.jpg" />
-                <CarouselItem index={2} position={[0, -4, 0]} url="/img3.jpg" />
-                <CarouselItem index={3} position={[0, -7, 0]} url="/img4.jpg" />
+                <CarouselItem index={0} position={[0, 2, 0]} url="/img/project/img1.jpg" />
+                <CarouselItem index={1} position={[0, -1, 0]} url="/img/project/img2.jpg" />
+                <CarouselItem index={2} position={[0, -4, 0]} url="/img/project/img3.jpg" />
+                <CarouselItem index={3} position={[0, -7, 0]} url="/img/project/img4.jpg" />
             </group>
         </ScrollControls>
     );

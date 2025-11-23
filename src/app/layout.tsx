@@ -5,7 +5,7 @@ import SmoothScroll from '@/components/layout/SmoothScroll';
 import Scene from '@/components/canvas/Scene';
 import Navbar from '@/components/dom/Navbar';
 import Footer from '@/components/dom/Footer';
-import Preloader from '@/components/ui/Preloader';
+import IntroSequence from '@/components/ui/IntroSequence';
 import CustomCursor from '@/components/ui/CustomCursor';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 
@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: '<Boba.dev />',
-  description: 'Immersive <Boba.dev /> Website',
+  title: 'Portfolio | Bondan Banuaji',
+  description: 'Immersive Portfolio Website',
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CustomCursor />
           <NoiseOverlay />
-          <Preloader />
+          <IntroSequence />
           <Navbar />
           <Scene />
           <main>{children}</main>
