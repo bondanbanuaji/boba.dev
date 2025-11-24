@@ -159,15 +159,15 @@ export default function Services() {
     return (
         <section 
             ref={containerRef} 
-            className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10 overflow-hidden"
+            className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative overflow-hidden"
         >
             {/* Background Decorations */}
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none -z-10">
                 <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]"></div>
                 <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]"></div>
             </div>
 
-            <div className="max-w-[90vw] lg:max-w-[85vw] mx-auto relative z-10">
+            <div className="max-w-[90vw] lg:max-w-[85vw] mx-auto relative">
                 {/* Header */}
                 <div className="mb-16 md:mb-24 lg:mb-32">
                     <Parallax speed={-0.05}>
