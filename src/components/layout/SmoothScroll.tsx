@@ -23,7 +23,10 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
             smoothWheel: true,
         });
 
-        setLenis(lenisInstance);
+        // Use requestAnimationFrame to defer setState
+        requestAnimationFrame(() => {
+            setLenis(lenisInstance);
+        });
 
         lenisInstance.on('scroll', ScrollTrigger.update);
 

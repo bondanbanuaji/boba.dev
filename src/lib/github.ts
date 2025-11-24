@@ -120,7 +120,7 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
         // Transform data GitHub ke format yang diinginkan
         return repos
             .filter((repo) => !repo.isPrivate) // Filter hanya public repos
-            .map((repo, index) => {
+            .map((repo) => {
                 // Ambil top 4 languages
                 const languages = repo.languages.nodes.slice(0, 4).map((lang) => lang.name);
 

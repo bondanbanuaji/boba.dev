@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,6 +12,8 @@ import { Canvas } from '@react-three/fiber';
 import About3D from '@/components/canvas/About3D';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// SEO would be added via metadata export in a separate file or parent layout
 
 // Skills data
 const skills = {
@@ -270,11 +271,11 @@ export default function AboutPage() {
                     <div className="order-2 lg:order-2">
                         <Parallax speed={0.05}>
                             <h2 className="profile-text text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 tracking-tight">
-                                Hi, I'm Bondan Banuaji
+                                Hi, I&apos;m Bondan Banuaji
                             </h2>
                             <div className="profile-text text-base md:text-lg lg:text-xl opacity-80 space-y-4 md:space-y-6 leading-relaxed font-light">
                                 <p>
-                                    I'm a creative technologist with a passion for building immersive digital experiences.
+                                    I&apos;m a creative technologist with a passion for building immersive digital experiences.
                                     My journey began with a curiosity for how things work, which evolved into a career
                                     bridging the gap between design and engineering.
                                 </p>
@@ -452,10 +453,10 @@ export default function AboutPage() {
 
                 <div className="max-w-[90vw] lg:max-w-[70vw] mx-auto text-center relative z-10">
                     <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-10 tracking-tight">
-                        Let's Build Something Amazing
+                        Let&apos;s Build Something Amazing
                     </h2>
                     <p className="text-base md:text-lg lg:text-2xl opacity-70 mb-10 md:mb-14 font-light max-w-2xl mx-auto">
-                        I'm always excited to collaborate on new projects and innovative ideas.
+                        I&apos;m always excited to collaborate on new projects and innovative ideas.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">

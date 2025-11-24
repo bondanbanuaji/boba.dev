@@ -16,16 +16,16 @@ const stats = [
 ];
 
 const skills = [
-    'React', 'Next.js', 'TypeScript', 'Node.js', 'Python',
-    'Three.js', 'GSAP', 'TailwindCSS', 'MongoDB', 'PostgreSQL'
+    'React', 'Next.js', 'TypeScript', 'Node.js', 'Laravel', 'Python',
+    'Three.js', 'GSAP', 'TailwindCSS', 'MongoDB', 'MySQL', 'PostgreSQL'
 ];
 
 const hobbies = [
     { emoji: '💻', text: 'Ngoding' },
+    { emoji: '🎵', text: 'Listening Music' },
     { emoji: '✈️', text: 'Traveling' },
     { emoji: '😴', text: 'Sleeping' },
-    { emoji: '🎮', text: 'Ngising' },
-    { emoji: '🎵', text: 'Listening Music' },
+    { emoji: '🗿', text: 'Ngising' },
 ];
 
 export default function About() {
@@ -35,113 +35,182 @@ export default function About() {
     useGSAP(() => {
         if (!containerRef.current) return;
 
+        // Ensure content is visible first (fallback)
+        gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], { 
+            clearProps: 'all'
+        });
+
         // Split Title Animation
         const titleChars = titleRef.current?.textContent?.split('') || [];
-        if (titleRef.current) {
+        if (titleRef.current && titleChars.length > 0) {
             titleRef.current.innerHTML = titleChars
                 .map((char) => `<span class="inline-block">${char === ' ' ? '&nbsp;' : char}</span>`)
                 .join('');
+
+            gsap.fromTo(titleRef.current.children,
+                {
+                    opacity: 0,
+                    y: 80,
+                    rotationX: -90,
+                },
+                {
+                    scrollTrigger: {
+                        trigger: titleRef.current,
+                        start: 'top 85%',
+                        end: 'top 60%',
+                        toggleActions: 'play none none reverse',
+                    },
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                    stagger: 0.03,
+                    duration: 0.6,
+                    ease: 'back.out(1.5)',
+                }
+            );
         }
 
-        gsap.from(titleRef.current?.children || [], {
-            scrollTrigger: {
-                trigger: titleRef.current,
-                start: 'top 85%',
-                end: 'top 60%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            y: 80,
-            rotationX: -90,
-            stagger: 0.03,
-            duration: 0.6,
-            ease: 'back.out(1.5)',
-        });
-
         // Text Content Animation
-        gsap.from('.about-paragraph', {
-            scrollTrigger: {
-                trigger: '.about-content',
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power3.out',
-        });
+        const paragraphs = gsap.utils.toArray<HTMLElement>('.about-paragraph');
+        if (paragraphs.length > 0) {
+            gsap.fromTo(paragraphs,
+                {
+                    opacity: 0,
+                    y: 40,
+                },
+                {
+                    scrollTrigger: {
+                        trigger: '.about-content',
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => gsap.set(paragraphs, { opacity: 1 }),
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power3.out',
+                }
+            );
+        }
 
         // Stats Animation
-        gsap.from('.stat-card', {
-            scrollTrigger: {
-                trigger: '.stats-grid',
-                start: 'top 80%',
-                end: 'top 40%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            scale: 0.8,
-            y: 50,
-            rotationY: 45,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: 'back.out(1.5)',
-        });
+        const statCards = gsap.utils.toArray<HTMLElement>('.stat-card');
+        if (statCards.length > 0) {
+            gsap.fromTo(statCards,
+                {
+                    opacity: 0,
+                    scale: 0.8,
+                    y: 50,
+                    rotationY: 45,
+                },
+                {
+                    scrollTrigger: {
+                        trigger: '.stats-grid',
+                        start: 'top 80%',
+                        end: 'top 40%',
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => gsap.set(statCards, { opacity: 1 }),
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    rotationY: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'back.out(1.5)',
+                }
+            );
+        }
 
         // Skills Animation
-        gsap.from('.skill-badge', {
-            scrollTrigger: {
-                trigger: '.skills-container',
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            scale: 0,
-            duration: 0.5,
-            stagger: 0.05,
-            ease: 'back.out(2)',
-        });
+        const skillBadges = gsap.utils.toArray<HTMLElement>('.skill-badge');
+        if (skillBadges.length > 0) {
+            gsap.fromTo(skillBadges,
+                {
+                    opacity: 0,
+                    scale: 0,
+                },
+                {
+                    scrollTrigger: {
+                        trigger: '.skills-container',
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => gsap.set(skillBadges, { opacity: 1 }),
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    stagger: 0.05,
+                    ease: 'back.out(2)',
+                }
+            );
+        }
 
-        // Traits Animation
-        gsap.from('.trait-item', {
-            scrollTrigger: {
-                trigger: '.traits-grid',
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            x: -50,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power3.out',
-        });
+        // Hobbies Animation
+        const hobbies = gsap.utils.toArray<HTMLElement>('.hobby-item');
+        if (hobbies.length > 0) {
+            gsap.fromTo(hobbies,
+                {
+                    opacity: 0,
+                    scale: 0.8,
+                },
+                {
+                    scrollTrigger: {
+                        trigger: '.hobby-item',
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => gsap.set(hobbies, { opacity: 1 }),
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: 'back.out(1.5)',
+                }
+            );
+        }
 
         // Profile Image 3D Tilt Animation
         const profileCard = containerRef.current.querySelector('.profile-card');
         if (profileCard) {
-            gsap.from(profileCard, {
-                scrollTrigger: {
-                    trigger: profileCard,
-                    start: 'top 80%',
-                    end: 'top 40%',
-                    toggleActions: 'play none none reverse',
+            gsap.fromTo(profileCard,
+                {
+                    opacity: 0,
+                    scale: 0.9,
+                    rotationY: 30,
                 },
-                opacity: 0,
-                scale: 0.9,
-                rotationY: 30,
-                duration: 1.2,
-                ease: 'power3.out',
-            });
+                {
+                    scrollTrigger: {
+                        trigger: profileCard,
+                        start: 'top 80%',
+                        end: 'top 40%',
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => gsap.set(profileCard, { opacity: 1 }),
+                    },
+                    opacity: 1,
+                    scale: 1,
+                    rotationY: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                }
+            );
         }
+
+        // Immediate visibility timeout fallback
+        setTimeout(() => {
+            gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], { 
+                opacity: 1,
+                clearProps: 'transform'
+            });
+        }, 100);
 
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10 overflow-hidden">
+        <section id="about" ref={containerRef} className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10 overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/3 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-[100px]"></div>
@@ -174,10 +243,10 @@ export default function About() {
                         <Parallax speed={0.02}>
                             <div className="about-paragraph space-y-6">
                                 <p className="text-lg md:text-xl lg:text-2xl opacity-80 leading-relaxed font-light">
-                                    Hi! I'm <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Bondan Banuaji</span>, also known as <span className="font-semibold">Boba</span> 🧋
+                                    Hi! I&apos;m <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Bondan Banuaji</span>, also known as <span className="font-semibold">Boba</span>
                                 </p>
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    I'm an <span className="text-white/90 font-medium">Informatics Engineering student</span> from Karawang, Indonesia, 
+                                    I&apos;m an <span className="text-white/90 font-medium">Informatics Engineering student</span> from Karawang, Indonesia, 
                                     passionate about experimenting with anything tech-related. From building modern web applications 
                                     to tinkering with AI and creating immersive digital experiences.
                                 </p>
@@ -185,12 +254,12 @@ export default function About() {
 
                             <div className="about-paragraph space-y-6 pt-6">
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    My philosophy is simple: <span className="italic text-white/90">"never stop learning"</span>. 
-                                    I'm constantly exploring new technologies, pushing boundaries with creative development, 
+                                    My philosophy is simple: <span className="italic text-white/90">&ldquo;never stop learning&rdquo;</span>. 
+                                    I&apos;m constantly exploring new technologies, pushing boundaries with creative development, 
                                     and building projects that solve real-world problems.
                                 </p>
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    When I'm not coding, you'll find me contributing to open-source projects, 
+                                    When I&apos;m not coding, you&apos;ll find me contributing to open-source projects, 
                                     learning new frameworks, or experimenting with AI and 3D web experiences.
                                 </p>
                             </div>
@@ -221,6 +290,7 @@ export default function About() {
                             <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/30 transition-all duration-500 h-full">
                                 
                                 {/* Profile Image */}
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img 
                                     src="https://avatars.githubusercontent.com/bondanbanuaji" 
                                     alt="Bondan Banuaji"

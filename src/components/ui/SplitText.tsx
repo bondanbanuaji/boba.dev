@@ -45,10 +45,14 @@ const SplitText: React.FC<SplitTextProps> = ({
 
     useEffect(() => {
         if (document.fonts.status === 'loaded') {
-            setFontsLoaded(true);
+            requestAnimationFrame(() => {
+                setFontsLoaded(true);
+            });
         } else {
             document.fonts.ready.then(() => {
-                setFontsLoaded(true);
+                requestAnimationFrame(() => {
+                    setFontsLoaded(true);
+                });
             });
         }
     }, []);
@@ -56,12 +60,12 @@ const SplitText: React.FC<SplitTextProps> = ({
     useGSAP(
         () => {
             if (!ref.current || !text || !fontsLoaded) return;
-            const el = ref.current as any; // Cast to any to access custom property
+            const el = ref.current as HTMLElement & { _rbsplitInstance?: GSAPSplitText | null };
 
             if (el._rbsplitInstance) {
                 try {
                     el._rbsplitInstance.revert();
-                } catch (_) {
+                } catch {
                     /* noop */
                 }
                 el._rbsplitInstance = null;
@@ -79,8 +83,8 @@ const SplitText: React.FC<SplitTextProps> = ({
                         : `+=${marginValue}${marginUnit}`;
             const start = `top ${startPct}%${sign}`;
 
-            let targets: any;
-            const assignTargets = (self: any) => {
+            let targets: Element[];
+            const assignTargets = (self: GSAPSplitText) => {
                 if (splitType.includes('chars') && self.chars.length) targets = self.chars;
                 if (!targets && splitType.includes('words') && self.words.length) targets = self.words;
                 if (!targets && splitType.includes('lines') && self.lines.length) targets = self.lines;
@@ -97,8 +101,7 @@ const SplitText: React.FC<SplitTextProps> = ({
                 wordsClass: 'split-word',
                 charsClass: 'split-char',
                 reduceWhiteSpace: false,
-                // @ts-ignore
-                onSplit: (self: any) => {
+                onSplit: (self: GSAPSplitText) => {
                     assignTargets(self);
                     const tween = gsap.fromTo(
                         targets,
@@ -125,7 +128,7 @@ const SplitText: React.FC<SplitTextProps> = ({
                     );
                     return tween;
                 }
-            } as any);
+            } as ConstructorParameters<typeof GSAPSplitText>[1]);
 
             el._rbsplitInstance = splitInstance;
 
@@ -135,7 +138,7 @@ const SplitText: React.FC<SplitTextProps> = ({
                 });
                 try {
                     splitInstance.revert();
-                } catch (_) {
+                } catch {
                     /* noop */
                 }
                 el._rbsplitInstance = null;
@@ -162,7 +165,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 
     const renderTag = () => {
         const style: React.CSSProperties = {
-            textAlign: textAlign as any,
+            textAlign,
             overflow: 'hidden',
             display: 'inline-block',
             whiteSpace: 'nowrap',
@@ -172,7 +175,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         const classes = `split-parent ${className}`;
 
         // Helper to render with ref
-        const props = { ref: ref as any, style, className: classes };
+        const props = { ref: ref as React.RefObject<HTMLHeadingElement | HTMLParagraphElement>, style, className: classes };
 
         switch (tag) {
             case 'h1': return <h1 {...props}>{text}</h1>;

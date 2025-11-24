@@ -22,8 +22,27 @@ export default function Footer() {
         lenis?.scrollTo(0);
     };
 
+    const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement && lenis) {
+            lenis.scrollTo(targetElement, {
+                offset: 0,
+                duration: 1.5,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            });
+        }
+    };
+
     useGSAP(() => {
         if (!footerRef.current) return;
+
+        // Ensure content is visible first (fallback)
+        gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], { 
+            clearProps: 'all'
+        });
 
         // Animate Go Top Indicator
         gsap.from('.go-top-indicator', {
@@ -32,6 +51,7 @@ export default function Footer() {
                 start: 'top 90%',
                 end: 'top 60%',
                 toggleActions: 'play none none reverse',
+                onEnter: () => gsap.set('.go-top-indicator', { opacity: 1 }),
             },
             opacity: 0,
             y: -30,
@@ -40,48 +60,69 @@ export default function Footer() {
         });
 
         // Animate Footer Content
-        gsap.from('.footer-content', {
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: 'top 85%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: 'power3.out',
-        });
+        const footerContent = gsap.utils.toArray<HTMLElement>('.footer-content');
+        if (footerContent.length > 0) {
+            gsap.from(footerContent, {
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: 'top 85%',
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse',
+                    onEnter: () => gsap.set(footerContent, { opacity: 1 }),
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        }
 
         // Animate Social Icons
-        gsap.from('.social-icon', {
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            scale: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-        });
+        const socialIcons = gsap.utils.toArray<HTMLElement>('.social-icon');
+        if (socialIcons.length > 0) {
+            gsap.from(socialIcons, {
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse',
+                    onEnter: () => gsap.set(socialIcons, { opacity: 1 }),
+                },
+                opacity: 0,
+                scale: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'back.out(1.7)',
+            });
+        }
 
         // Animate Sitemap Links
-        gsap.from('.sitemap-link', {
-            scrollTrigger: {
-                trigger: footerRef.current,
-                start: 'top 80%',
-                end: 'top 50%',
-                toggleActions: 'play none none reverse',
-            },
-            opacity: 0,
-            x: 20,
-            duration: 0.6,
-            stagger: 0.08,
-            ease: 'power2.out',
-        });
+        const sitemapLinks = gsap.utils.toArray<HTMLElement>('.sitemap-link');
+        if (sitemapLinks.length > 0) {
+            gsap.from(sitemapLinks, {
+                scrollTrigger: {
+                    trigger: footerRef.current,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    toggleActions: 'play none none reverse',
+                    onEnter: () => gsap.set(sitemapLinks, { opacity: 1 }),
+                },
+                opacity: 0,
+                x: 20,
+                duration: 0.6,
+                stagger: 0.08,
+                ease: 'power2.out',
+            });
+        }
+
+        // Immediate visibility timeout fallback
+        setTimeout(() => {
+            gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], { 
+                opacity: 1,
+                clearProps: 'transform'
+            });
+        }, 100);
+
     }, { scope: footerRef });
 
     return (
@@ -134,14 +175,21 @@ export default function Footer() {
                     {/* Right Side: Sitemap */}
                     <div className="md:text-right">
                         <ul className="space-y-4 flex flex-col md:items-end">
-                            {['Home', 'About', 'Work', 'Services', 'Contact'].map((item) => (
-                                <li key={item} className="sitemap-link">
-                                    <Link
-                                        href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                                        className="text-xl md:text-lg font-medium text-black uppercase hover:text-black/60 transition-colors inline-block tracking-tight"
+                            {[
+                                { name: 'Home', href: '#home' },
+                                { name: 'About', href: '#about' },
+                                { name: 'Work', href: '#work' },
+                                { name: 'Services', href: '#services' },
+                                { name: 'Contact', href: '#contact' }
+                            ].map((item) => (
+                                <li key={item.name} className="sitemap-link">
+                                    <a
+                                        href={item.href}
+                                        onClick={(e) => handleScrollToSection(e, item.href)}
+                                        className="text-xl md:text-lg font-medium text-black uppercase hover:text-black/60 transition-colors inline-block tracking-tight cursor-pointer"
                                     >
-                                        {item}
-                                    </Link>
+                                        {item.name}
+                                    </a>
                                 </li>
                             ))}
                         </ul>

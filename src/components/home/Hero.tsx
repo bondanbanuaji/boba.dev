@@ -46,19 +46,31 @@ export default function Hero() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-6 pt-20 overflow-hidden">
+        <section
+            id="home"
+            ref={containerRef}
+            className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-6 pt-16 sm:pt-20 md:pt-28 lg:pt-36"
+            style={{ overflowX: 'clip', overflowY: 'visible' }}
+        >
             <div className="relative z-10 w-full flex flex-col items-center">
-                <Parallax speed={-0.1} className="mb-6 lg:mb-10 overflow-hidden">
+                <Parallax speed={-0.1} className="mb-6 lg:mb-10">
                     <h2 className="hero-subtitle text-sm md:text-xl lg:text-2xl font-light tracking-[0.3em] uppercase text-white/70 mb-4">
-                        Creative Technologist
+                        PORTFOLIO | WEB DEVELOPER
                     </h2>
                 </Parallax>
 
-                <div className="hero-title-container w-full overflow-hidden mb-0 mask-linear-fade">
+                <div
+                    className="hero-title-container w-full mb-0 mask-linear-fade"
+                    style={{ overflowX: 'clip', overflowY: 'visible' }}
+                >
                     <div className="hero-title-wrapper flex whitespace-nowrap w-max">
                         {/* Three copies for seamless loop */}
                         {[...Array(4)].map((_, i) => (
-                            <div key={i} className="relative h-[300px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px] w-[100vw] flex-shrink-0 mx-4 md:mx-8">
+                            <div
+                                key={i}
+                                className="relative h-[300px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px] w-[100vw] flex-shrink-0 mx-4 md:mx-8"
+                                style={{ touchAction: 'pan-y' }}
+                            >
                                 <TextPressure
                                     text="BONDAN BANUAJI"
                                     flex={true}
@@ -77,7 +89,10 @@ export default function Hero() {
                 </div>
 
                 {/* Interactive 3D Cat */}
-                <div className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] relative z-20 -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-32 mb-2 pointer-events-none">
+                <div
+                    className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] relative z-20 -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-32 mb-2 pointer-events-none"
+                    style={{ touchAction: 'pan-y' }}
+                >
                     <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
                         <Cat3D />
                     </Canvas>
@@ -85,10 +100,17 @@ export default function Hero() {
 
                 <div className="scroll-indicator mt-2 flex flex-col items-center gap-2 sm:gap-3 md:gap-4 opacity-50 pointer-events-none">
                     <span className="text-[10px] sm:text-xs md:text-sm lg:text-base uppercase tracking-widest">
-                        Scroll
-                    </span>
+                        {/* Tampil di Mobile & Tablet (Hilang saat layar Besar/Desktop) */}
+                        <span className="lg:hidden">
+                            Tap and swipe down
+                        </span>
 
-                    <div className="relative w-[1px] h-10 sm:h-12 md:h-16 lg:h-20 xl:h-24 overflow-hidden">
+                        {/* Tampil di Desktop (Hilang saat layar Kecil/Mobile) */}
+                        <span className="hidden lg:inline">
+                            Scroll Mouse
+                        </span>
+                    </span>
+                    <div className="relative w-[1px] h-10 sm:h-12 md:h-16 lg:h-20 xl:h-24" style={{ overflow: 'hidden' }}>
                         <div className="absolute inset-0 bg-white animate-scrollY"></div>
                     </div>
                 </div>

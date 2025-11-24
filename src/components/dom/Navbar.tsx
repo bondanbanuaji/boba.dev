@@ -5,19 +5,40 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import MagneticButton from '@/components/ui/MagneticButton';
+import { useLenis } from '@/components/layout/SmoothScroll';
 
 const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Work', href: '/work' },
-    { name: 'Services', href: '/services' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Work', href: '#work' },
+    { name: 'Services', href: '#services' },
+    { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
     const navRef = useRef<HTMLElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const lenis = useLenis();
+
+    const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const targetId = href.replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement && lenis) {
+            lenis.scrollTo(targetElement, {
+                offset: 0,
+                duration: 1.5,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            });
+            
+            // Close mobile menu if open
+            if (isOpen) {
+                setIsOpen(false);
+            }
+        }
+    };
 
     // Initial Load Animation
     useEffect(() => {
@@ -91,12 +112,13 @@ export default function Navbar() {
                 <div className='hidden md:flex gap-8'>
                     {navLinks.map((link) => (
                         <MagneticButton key={link.name} strength={0.2} className="inline-block">
-                            <Link
+                            <a
                                 href={link.href}
-                                className='nav-link-desktop text-white text-sm uppercase tracking-widest hover:opacity-70 transition-opacity px-4 py-2 block'
+                                onClick={(e) => handleScrollToSection(e, link.href)}
+                                className='nav-link-desktop text-white text-sm uppercase tracking-widest hover:opacity-70 transition-opacity px-4 py-2 block cursor-pointer'
                             >
                                 {link.name}
-                            </Link>
+                            </a>
                         </MagneticButton>
                     ))}
                 </div>
@@ -121,13 +143,13 @@ export default function Navbar() {
                 <div className='flex flex-col gap-6 items-center'>
                     {navLinks.map((link) => (
                         <div key={link.name} className='overflow-hidden'>
-                            <Link
+                            <a
                                 href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className='mobile-nav-link relative block text-black text-5xl font-bold tracking-tighter after:content-[""] after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-0 after:h-[4px] after:bg-black after:transition-all after:duration-500 hover:after:w-full'
+                                onClick={(e) => handleScrollToSection(e, link.href)}
+                                className='mobile-nav-link relative block text-black text-5xl font-bold tracking-tighter after:content-[""] after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-0 after:h-[4px] after:bg-black after:transition-all after:duration-500 hover:after:w-full cursor-pointer'
                             >
                                 {link.name}
-                            </Link>
+                            </a>
                         </div>
                     ))}
                 </div>

@@ -113,7 +113,7 @@ export default function IntroSequence() {
 
                 {step === 'input' && (
                     <form onSubmit={handleNameSubmit} className="w-full flex flex-col items-center gap-6">
-                        <h2 className="text-2xl md:text-3xl font-light opacity-80">What's your name?</h2>
+                        <h2 className="text-2xl md:text-3xl font-light opacity-80">What&apos;s your name?</h2>
                         <input
                             ref={inputRef}
                             type="text"

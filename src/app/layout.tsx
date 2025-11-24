@@ -9,6 +9,7 @@ import IntroSequence from '@/components/ui/IntroSequence';
 import CustomCursor from '@/components/ui/CustomCursor';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
 import ServiceWorkerProvider from '@/components/ServiceWorkerProvider';
+import { generateMetadata, generateStructuredData } from '@/lib/metadata';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -20,18 +21,23 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Portfolio | Bondan Banuaji',
-  description: 'Immersive Portfolio Website',
-};
+export const metadata: Metadata = generateMetadata({});
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = generateStructuredData({ type: 'Person' });
+  
   return (
     <html lang='en'>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SmoothScroll>
           <ServiceWorkerProvider />
