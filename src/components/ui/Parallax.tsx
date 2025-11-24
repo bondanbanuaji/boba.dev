@@ -32,7 +32,8 @@ export default function Parallax({ children, speed = 0.5, className, id }: Paral
                     trigger: trigger.current,
                     start: 'top bottom',
                     end: 'bottom top',
-                    scrub: 0,
+                    scrub: 1,
+                    invalidateOnRefresh: true,
                 }
             }
         );
@@ -40,7 +41,7 @@ export default function Parallax({ children, speed = 0.5, className, id }: Paral
 
     return (
         <div ref={trigger} id={id} className={className}>
-            <div ref={target}>
+            <div ref={target} style={{ willChange: 'transform' }}>
                 {children}
             </div>
         </div>

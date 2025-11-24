@@ -39,8 +39,7 @@ export default function Navbar() {
     // Mobile Menu Animation
     useEffect(() => {
         if (isOpen) {
-            document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
+            // Don't manipulate overflow - Lenis handles it
 
             gsap.to(mobileMenuRef.current, {
                 clipPath: 'circle(150% at 100% 0%)',
@@ -61,9 +60,6 @@ export default function Navbar() {
                 }
             );
         } else {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-
             gsap.to(mobileMenuRef.current, {
                 clipPath: 'circle(0% at 100% 0%)',
                 duration: 0.8,
@@ -80,10 +76,10 @@ export default function Navbar() {
             >
                 <div className='relative z-[60] md:left-5 md:top-1'>
                     <Link href='/' className='block'>
-                        <Image 
-                            src='/img/Logo/boba-dark-logo-removebg-preview.png' 
-                            alt='Logo' 
-                            width={100} 
+                        <Image
+                            src='/img/Logo/boba-dark-logo-removebg-preview.png'
+                            alt='Logo'
+                            width={100}
                             height={100}
                             className='w-16 h-auto sm:w-20 md:w-24 lg:w-28'
                             priority

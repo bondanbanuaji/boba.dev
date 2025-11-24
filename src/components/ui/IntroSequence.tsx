@@ -82,16 +82,6 @@ export default function IntroSequence() {
         });
     };
 
-    // Scroll Lock
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-        };
-    }, []);
-
     const handleGreetingComplete = () => {
         // Wait a bit after greeting finishes, then exit
         setTimeout(() => {
@@ -101,8 +91,6 @@ export default function IntroSequence() {
                 ease: 'power4.inOut',
                 onComplete: () => {
                     setStep('complete');
-                    document.body.style.overflow = '';
-                    document.documentElement.style.overflow = '';
                     window.dispatchEvent(new Event('intro-complete'));
                 }
             });

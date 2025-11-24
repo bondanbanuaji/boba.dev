@@ -1,61 +1,47 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ExternalLink, Star, GitFork } from 'lucide-react';
 import Parallax from '@/components/ui/Parallax';
+import { type PinnedRepo } from '@/lib/github';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-    {
-        id: 1,
-        title: 'E-Commerce Redesign',
-        category: 'Development',
-        description: 'A modern, high-performance e-commerce platform built with Next.js and Shopify.',
-        tech: ['Next.js', 'Shopify', 'Tailwind', 'GSAP'],
-        color: 'bg-blue-900/20',
-        image: '/img/project/img1.jpg' // Placeholder
-    },
-    {
-        id: 2,
-        title: 'Immersive Portfolio',
-        category: 'Design & Dev',
-        description: 'An award-winning 3D portfolio featuring interactive WebGL experiences.',
-        tech: ['Three.js', 'R3F', 'Blender', 'React'],
-        color: 'bg-purple-900/20',
-        image: '/img/project/img2.jpg' // Placeholder
-    },
-    {
-        id: 3,
-        title: 'Fintech Dashboard',
-        category: 'Product Design',
-        description: 'Real-time financial data visualization dashboard for enterprise clients.',
-        tech: ['React', 'D3.js', 'TypeScript', 'Node.js'],
-        color: 'bg-emerald-900/20',
-        image: '/img/project/img3.jpg' // Placeholder
-    },
-    {
-        id: 4,
-        title: 'AI Content Generator',
-        category: 'Full Stack',
-        description: 'SaaS application leveraging OpenAI API for automated content creation.',
-        tech: ['Next.js', 'OpenAI', 'Stripe', 'PostgreSQL'],
-        color: 'bg-orange-900/20',
-        image: '/img/project/img4.jpg' // Placeholder
-    }
-];
-
 export default function Projects() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [projects, setProjects] = useState<PinnedRepo[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchProjects() {
+            try {
+                const response = await fetch('/api/projects');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch projects');
+                }
+                const repos = await response.json();
+                setProjects(repos);
+            } catch (error) {
+                console.error('Failed to fetch projects:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchProjects();
+    }, []);
 
     useGSAP(() => {
-        const projects = gsap.utils.toArray<HTMLElement>('.project-card');
+        if (loading || projects.length === 0) return;
 
-        projects.forEach((project, i) => {
+        const projectCards = gsap.utils.toArray<HTMLElement>('.project-card');
+
+        projectCards.forEach((project) => {
             gsap.from(project, {
                 scrollTrigger: {
                     trigger: project,
@@ -69,21 +55,40 @@ export default function Projects() {
                 ease: 'power3.out'
             });
         });
-    }, { scope: containerRef });
+    }, { scope: containerRef, dependencies: [loading, projects] });
+
+    if (loading) {
+        return (
+            <section id="work" className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10">
+                <div className="max-w-[90vw] mx-auto">
+                    <div className="text-center">
+                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div>
+                        <p className="mt-4 text-white/50">Loading projects...</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="work" ref={containerRef} className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10">
             <div className="max-w-[90vw] mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 lg:mb-32 gap-6">
                     <div>
-                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 tracking-tight">Selected Work</h2>
+                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 tracking-tight">Work Projects</h2>
                         <p className="text-lg md:text-xl lg:text-2xl opacity-60 max-w-xl">
-                            A collection of projects that define my approach to digital product design.
+                            A collection of my featured open-source projects from GitHub.
                         </p>
                     </div>
-                    <Link href="/work" className="hidden md:block text-lg lg:text-xl border-b border-white/30 pb-1 hover:border-white transition-colors">
-                        View All Projects
-                    </Link>
+                    <a
+                        href="https://github.com/bondanbanuaji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden md:flex items-center gap-2 text-lg lg:text-xl border-b border-white/30 pb-1 hover:border-white transition-colors"
+                    >
+                        View GitHub Profile
+                        <ExternalLink className="w-4 h-4" />
+                    </a>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-x-12 md:gap-y-24 lg:gap-x-20 lg:gap-y-32">
@@ -92,8 +97,8 @@ export default function Projects() {
                             key={project.id}
                             className={`project-card group relative ${index % 2 === 1 ? 'md:mt-20 lg:mt-32' : ''}`}
                         >
-                            <Parallax speed={index % 2 === 0 ? 0.05 : 0.1}>
-                                <div className={`aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] ${project.color} rounded-2xl overflow-hidden mb-8 relative`}>
+                            <Parallax speed={index % 2 === 0 ? 0.05 : 0.15} className="mb-8">
+                                <div className="aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-2xl overflow-hidden relative">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
@@ -110,27 +115,63 @@ export default function Projects() {
                                         <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold group-hover:text-purple-400 transition-colors">
                                             {project.title}
                                         </h3>
-                                        <Link
-                                            href={`/work/${project.id}`}
+                                        <a
+                                            href={project.homepageUrl || project.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300"
                                         >
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transform -rotate-45 group-hover:rotate-0 transition-transform duration-300 w-4 h-4 md:w-5 md:h-5">
-                                                <path d="M5 12h14M12 5l7 7-7 7" />
-                                            </svg>
-                                        </Link>
+                                            <ExternalLink className="w-4 h-4 md:w-5 md:h-5" />
+                                        </a>
                                     </div>
+
                                     <div className="flex items-center gap-4 mb-4">
-                                        <span className="px-3 py-1 border border-white/20 rounded-full text-xs uppercase tracking-widest whitespace-nowrap">
-                                            {project.category}
+                                        <span
+                                            className="px-3 py-1 border border-white/20 rounded-full text-xs uppercase tracking-widest whitespace-nowrap flex items-center gap-2"
+                                            style={{ borderColor: project.languageColor + '40' }}
+                                        >
+                                            <span
+                                                className="w-2 h-2 rounded-full"
+                                                style={{ backgroundColor: project.languageColor }}
+                                            />
+                                            {project.language}
                                         </span>
+                                        <div className="flex items-center gap-3 text-xs opacity-50">
+                                            <span className="flex items-center gap-1">
+                                                <Star className="w-3 h-3" />
+                                                {project.stars}
+                                            </span>
+                                            {project.forks > 0 && (
+                                                <span className="flex items-center gap-1">
+                                                    <GitFork className="w-3 h-3" />
+                                                    {project.forks}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
-                                    <p className="text-base md:text-lg opacity-70 mb-6 line-clamp-2">
+
+                                    <p className="text-base md:text-lg opacity-70 mb-6 line-clamp-3">
                                         {project.description}
                                     </p>
+
                                     <div className="flex gap-2 md:gap-3 flex-wrap">
-                                        {project.tech.map((t) => (
-                                            <span key={t} className="text-xs md:text-sm opacity-50"># {t}</span>
+                                        {project.tech.map((tech) => (
+                                            <span key={tech} className="text-xs md:text-sm opacity-50">
+                                                # {tech}
+                                            </span>
                                         ))}
+                                    </div>
+
+                                    <div className="mt-4 pt-4 border-t border-white/10">
+                                        <a
+                                            href={project.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-sm opacity-50 hover:opacity-100 transition-opacity flex items-center gap-1"
+                                        >
+                                            View on GitHub
+                                            <ExternalLink className="w-3 h-3" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +180,15 @@ export default function Projects() {
                 </div>
 
                 <div className="mt-16 text-center md:hidden">
-                    <Link href="/work" className="text-lg border-b border-white/30 pb-1 hover:border-white transition-colors">
-                        View All Projects
-                    </Link>
+                    <a
+                        href="https://github.com/bondanbanuaji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-lg border-b border-white/30 pb-1 hover:border-white transition-colors"
+                    >
+                        View GitHub Profile
+                        <ExternalLink className="w-4 h-4" />
+                    </a>
                 </div>
             </div>
         </section>

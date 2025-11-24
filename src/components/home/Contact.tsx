@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '@/components/ui/MagneticButton';
+import Parallax from '@/components/ui/Parallax';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -30,11 +31,13 @@ export default function Contact() {
     return (
         <section id="contact" ref={containerRef} className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
             <div className="max-w-[90vw] mx-auto text-center">
-                <h2 className="contact-title text-[12vw] leading-[0.8] font-bold tracking-tighter mb-8 md:mb-12 lg:mb-16 mix-blend-difference">
-                    Let&apos;s Work<br />Together
-                </h2>
+                <Parallax speed={-0.1}>
+                    <h2 className="contact-title text-[12vw] leading-[0.8] font-bold tracking-tighter mb-8 md:mb-12 lg:mb-16 mix-blend-difference">
+                        Let&apos;s Work<br />Together
+                    </h2>
+                </Parallax>
 
-                <div className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center mb-16 md:mb-20 lg:mb-32">
+                <Parallax speed={0.1} className="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center mb-16 md:mb-20 lg:mb-32">
                     <MagneticButton strength={0.3}>
                         <Link
                             href="https://wa.me/628978601538"
@@ -46,7 +49,7 @@ export default function Contact() {
                             Contact Me
                         </Link>
                     </MagneticButton>
-                </div>
+                </Parallax>
             </div>
         </section>
     );

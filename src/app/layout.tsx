@@ -8,6 +8,7 @@ import Footer from '@/components/dom/Footer';
 import IntroSequence from '@/components/ui/IntroSequence';
 import CustomCursor from '@/components/ui/CustomCursor';
 import NoiseOverlay from '@/components/ui/NoiseOverlay';
+import ServiceWorkerProvider from '@/components/ServiceWorkerProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SmoothScroll>
+          <ServiceWorkerProvider />
           <CustomCursor />
           <NoiseOverlay />
           <IntroSequence />

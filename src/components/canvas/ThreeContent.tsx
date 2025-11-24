@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Hero3D from './Hero3D';
+import Cat3D from './Cat3D';
 import WorkCarousel from './WorkCarousel';
 import About3D from './About3D';
 import Services3D from './Services3D';
@@ -12,7 +13,7 @@ export default function ThreeContent() {
 
     return (
         <>
-            {pathname === '/' && <Hero3D />}
+            {/* Cat3D moved to Hero.tsx */}
             {pathname === '/work' && <WorkCarousel />}
             {pathname === '/about' && <About3D />}
             {pathname === '/services' && <Services3D />}
