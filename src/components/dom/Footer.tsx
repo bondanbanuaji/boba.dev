@@ -5,7 +5,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faInstagram, faLinkedin, faGithub, faTelegram, faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,6 +18,16 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
     const lenis = useLenis();
     const footerRef = useRef<HTMLElement>(null);
+
+    const socialLinks = [
+        { icon: faTwitter, href: 'https://x.com/jwcfrey', label: 'Twitter' },
+        { icon: faInstagram, href: 'https://www.instagram.com/bdn_bnj?igsh=MXdkZmRiejkwYTNjeQ==', label: 'Instagram' },
+        { icon: faLinkedin, href: 'linkedin.com/in/bondan-banuaji', label: 'LinkedIn' },
+        { icon: faTelegram, href: 'https://t.me/bxooxbxa', label: 'Telegram' },
+        { icon: faDiscord, href: 'https://discord.com/users/1413391132452192307', label: 'Discord' },
+        { icon: faEnvelope, href: 'mailto:bondanbanuaji@gmail.com', label: 'Email' },
+        { icon: faGithub, href: 'https://github.com/bondanbanuaji', label: 'GitHub' },
+    ];
 
     const handleScrollTop = () => {
         lenis?.scrollTo(0);
@@ -155,19 +166,19 @@ export default function Footer() {
                                     priority
                                 />
                             </Link>
-                            <div className="flex gap-4">
-                                <a href="#" className="social-icon size-[28px] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-300">
-                                    <FontAwesomeIcon icon={faTwitter} className="text-2xl transition-transform" />
-                                </a>
-                                <a href="#" className="social-icon size-[28px] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-300">
-                                    <FontAwesomeIcon icon={faInstagram} className="text-2xl transition-transform" />
-                                </a>
-                                <a href="#" className="social-icon size-[28px] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-300">
-                                    <FontAwesomeIcon icon={faLinkedin} className="text-2xl transition-transform" />
-                                </a>
-                                <a href="https://github.com/bondanbanuaji" target="_blank" rel="noopener noreferrer" className="social-icon size-[28px] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-300">
-                                    <FontAwesomeIcon icon={faGithub} className="text-2xl transition-transform" />
-                                </a>
+                            <div className="flex gap-5 flex-wrap max-w-[calc(4*28px+3*16px)] md:max-w-[calc(6*28px+5*16px)] lg:max-w-[calc(8*28px+7*16px)]">
+                                {socialLinks.map((social) => (
+                                    <a
+                                        key={social.label}
+                                        href={social.href}
+                                        target={social.href.startsWith('http') ? '_blank' : undefined}
+                                        rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                        aria-label={social.label}
+                                        className="social-icon size-[28px] rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-all duration-300"
+                                    >
+                                        <FontAwesomeIcon icon={social.icon} className="text-2xl transition-transform" />
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>

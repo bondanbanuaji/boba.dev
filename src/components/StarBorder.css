@@ -1,0 +1,80 @@
+.star-border-container {
+  display: inline-block;
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+  padding: 2px;
+}
+
+.border-gradient-bottom {
+  position: absolute;
+  width: 400%;
+  height: 60%;
+  opacity: 1;
+  bottom: -18px;
+  right: -300%;
+  border-radius: 50%;
+  animation: star-movement-bottom linear infinite;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.border-gradient-top {
+  position: absolute;
+  opacity: 1;
+  width: 400%;
+  height: 60%;
+  top: -18px;
+  left: -300%;
+  border-radius: 50%;
+  animation: star-movement-top linear infinite;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.inner-content {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(8px);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  padding: 24px 32px;
+  border-radius: 20px;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.inner-content:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-66%, 0%);
+    opacity: 0.3;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(66%, 0%);
+    opacity: 0.3;
+  }
+}

@@ -5,6 +5,10 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Parallax from '@/components/ui/Parallax';
+import FallingText from '@/components/FallingText';
+import LogoLoop from '@/components/LogoLoop';
+import StarBorder from '@/components/StarBorder';
+import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiLaravel, SiPython, SiThreedotjs, SiGreensock, SiTailwindcss, SiMongodb, SiMysql, SiPostgresql } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,9 +19,19 @@ const stats = [
     { number: '100%', label: 'Dedication', sublabel: 'Always' },
 ];
 
-const skills = [
-    'React', 'Next.js', 'TypeScript', 'Node.js', 'Laravel', 'Python',
-    'Three.js', 'GSAP', 'TailwindCSS', 'MongoDB', 'MySQL', 'PostgreSQL'
+const techLogos = [
+    { node: <SiReact className="text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs className="text-white" />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript className="text-[#3178C6]" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiNodedotjs className="text-[#339933]" />, title: "Node.js", href: "https://nodejs.org" },
+    { node: <SiLaravel className="text-[#FF2D20]" />, title: "Laravel", href: "https://laravel.com" },
+    { node: <SiPython className="text-[#3776AB]" />, title: "Python", href: "https://www.python.org" },
+    { node: <SiThreedotjs className="text-white" />, title: "Three.js", href: "https://threejs.org" },
+    { node: <SiGreensock className="text-[#88CE02]" />, title: "GSAP", href: "https://greensock.com/gsap" },
+    { node: <SiTailwindcss className="text-[#06B6D4]" />, title: "TailwindCSS", href: "https://tailwindcss.com" },
+    { node: <SiMongodb className="text-[#47A248]" />, title: "MongoDB", href: "https://www.mongodb.com" },
+    { node: <SiMysql className="text-[#4479A1]" />, title: "MySQL", href: "https://www.mysql.com" },
+    { node: <SiPostgresql className="text-[#4169E1]" />, title: "PostgreSQL", href: "https://www.postgresql.org" },
 ];
 
 const hobbies = [
@@ -25,7 +39,8 @@ const hobbies = [
     { emoji: '🎵', text: 'Listening Music' },
     { emoji: '✈️', text: 'Traveling' },
     { emoji: '😴', text: 'Sleeping' },
-    { emoji: '🗿', text: 'Ngising' },
+    { emoji: '🗣', text: 'yapping' },
+    { emoji: '🎮', text: 'gaming' }
 ];
 
 export default function About() {
@@ -268,17 +283,20 @@ export default function About() {
                         {/* Hobbies */}
                         <Parallax speed={0.03}>
                             <div className="pt-8">
-                                <h3 className="text-xl md:text-2xl font-bold mb-4 text-white/90">Hobbies</h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {hobbies.map((hobby, index) => (
-                                        <div
-                                            key={index}
-                                            className="hobby-item px-4 py-2 md:px-5 md:py-3 border border-white/20 rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 flex items-center gap-2 cursor-default"
-                                        >
-                                            <span className="text-lg md:text-xl">{hobby.emoji}</span>
-                                            <span className="text-sm md:text-base font-medium">{hobby.text}</span>
-                                        </div>
-                                    ))}
+                                <h3 className="flex justify-center md:justify-start text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-6 md:mb-8 text-white/90">Hobbies</h3>
+                                <div className="h-[80px] sm:h-[100px] md:h-[120px] lg:h-[140px] xl:h-[160px] 2xl:h-[180px] relative">
+                                    <FallingText
+                                        text={`${hobbies.map(h => `${h.emoji} ${h.text}`).join(' ')}`}
+                                        highlightWords={hobbies.map(h => h.emoji) as any}
+                                        highlightClass="text-cyan-400 font-bold"
+                                        trigger="hover"
+                                        backgroundColor="transparent"
+                                        wireframes={false}
+                                        gravity={0.56}
+                                        fontSize="clamp(0.875rem, 2vw, 1.125rem)"
+                                        mouseConstraintStiffness={0.9}
+                                        className="w-full h-full gap-2 flex"
+                                    />
                                 </div>
                             </div>
                         </Parallax>
@@ -312,16 +330,21 @@ export default function About() {
                 <Parallax speed={0.03}>
                     <div className="stats-grid grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20 md:mb-32">
                         {stats.map((stat, index) => (
-                            <div
+                            <StarBorder
                                 key={index}
-                                className="stat-card p-6 md:p-8 border border-white/10 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/30 hover:scale-105 transition-all duration-300 text-center group"
+                                as="div"
+                                className="stat-card w-full"
+                                color="cyan"
+                                speed="5s"
                             >
-                                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500">
-                                    {stat.number}
+                                <div className="text-center group">
+                                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500">
+                                        {stat.number}
+                                    </div>
+                                    <div className="text-sm md:text-base font-medium opacity-80">{stat.label}</div>
+                                    <div className="text-xs opacity-50">{stat.sublabel}</div>
                                 </div>
-                                <div className="text-sm md:text-base font-medium opacity-80">{stat.label}</div>
-                                <div className="text-xs opacity-50">{stat.sublabel}</div>
-                            </div>
+                            </StarBorder>
                         ))}
                     </div>
                 </Parallax>
@@ -329,18 +352,22 @@ export default function About() {
                 {/* Skills Section */}
                 <Parallax speed={0.02}>
                     <div className="skills-container">
-                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-center">
                             Tech Stack & Tools
                         </h3>
-                        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-                            {skills.map((skill, index) => (
-                                <span
-                                    key={index}
-                                    className="skill-badge px-4 py-2 md:px-6 md:py-3 border border-white/20 rounded-full text-sm md:text-base bg-white/5 hover:bg-white hover:text-black transition-all duration-300 hover:scale-110 cursor-default"
-                                >
-                                    {skill}
-                                </span>
-                            ))}
+                        <div className="h-[140px] sm:h-[160px] md:h-[180px] lg:h-[200px] xl:h-[220px] relative overflow-hidden rounded-xl backdrop-blur-sm flex items-center">
+                            <LogoLoop
+                                logos={techLogos}
+                                speed={100}
+                                direction="left"
+                                logoHeight={64}
+                                gap={40}
+                                hoverSpeed={0}
+                                scaleOnHover
+                                fadeOut
+                                fadeOutColor="transparent"
+                                ariaLabel="Tech stack logos"
+                            />
                         </div>
                     </div>
                 </Parallax>
