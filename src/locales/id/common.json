@@ -20,7 +20,7 @@
         "getInTouch": "Hubungi Saya",
         "submit": "Kirim",
         "viewGithub": "Lihat di GitHub",
-        "viewProfile": "Lihat Profil GitHub"
+        "viewGithubProfile": "Lihat Profil GitHub"
     },
     "common": {
         "loading": "Memuat...",

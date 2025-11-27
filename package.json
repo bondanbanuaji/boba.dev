@@ -1,6 +1,33 @@
 {
   "name": "boba.dev",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Portfolio of Bondan Banuaji - Full Stack Developer & Creative Technologist. Built with Next.js 16, React 19, Three.js, GSAP, and Tailwind CSS",
+  "author": {
+    "name": "Bondan Banuaji",
+    "email": "bondanbanuaji@gmail.com",
+    "url": "https://bxobxbxa.site"
+  },
+  "homepage": "https://bxobxbxa.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bondanbanuaji/boba.dev"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "react",
+    "threejs",
+    "gsap",
+    "tailwindcss",
+    "typescript",
+    "full-stack",
+    "web-developer",
+    "creative-technologist",
+    "3d-web",
+    "webgl",
+    "pwa",
+    "i18n"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",

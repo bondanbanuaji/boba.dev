@@ -2,33 +2,49 @@
     "section": {
         "subtitle": "Apa yang Saya Tawarkan",
         "title": "Layanan",
-        "description": "Mengubah ide menjadi pengalaman digital yang luar biasa dengan presisi, kreativitas, dan keunggulan teknis."
+        "description": "Layanan khusus untuk mewujudkan ide digital Anda dengan teknologi terkini dan solusi kreatif."
     },
     "services": [
         {
             "title": "Pengembangan Web",
-            "description": "Membuat aplikasi web berkinerja tinggi dan scalable dengan teknologi terkini. Dari website responsif hingga platform web kompleks, menghadirkan pengalaman pengguna yang seamless."
+            "description": "Membangun website dan aplikasi web modern yang responsif menggunakan teknologi terkini dan praktik terbaik.",
+            "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+            "icon": "🌐"
         },
         {
-            "title": "Pengembangan Kreatif",
-            "description": "Mendorong batasan dengan pengalaman 3D yang imersif dan animasi interaktif. Menghidupkan desain dengan WebGL, Three.js, dan motion graphics tingkat lanjut."
+            "title": "Pengembangan Full Stack",
+            "description": "Pengembangan end-to-end dari desain database hingga implementasi frontend dengan integrasi API yang seamless.",
+            "skills": ["Node.js", "Express", "PostgreSQL", "MongoDB"],
+            "icon": "⚙️"
         },
         {
-            "title": "Desain UI/UX",
-            "description": "Merancang antarmuka yang intuitif dan berpusat pada pengguna yang memadukan estetika dengan fungsionalitas. Menciptakan pengalaman digital yang berkesan dan disukai pengguna."
+            "title": "Pengalaman Web 3D",
+            "description": "Menciptakan pengalaman 3D yang imersif dan animasi menggunakan Three.js, WebGL, dan GSAP untuk interaksi pengguna yang menarik.",
+            "skills": ["Three.js", "WebGL", "GSAP", "Blender"],
+            "icon": "✨"
         },
         {
-            "title": "Pengembangan Full-Stack",
-            "description": "Membangun solusi end-to-end dengan arsitektur backend modern dan database. Mengintegrasikan frontend dan backend secara seamless untuk aplikasi yang robust."
+            "title": "Pengembangan UI/UX",
+            "description": "Menerjemahkan desain menjadi antarmuka interaktif yang pixel-perfect dengan animasi dan transisi yang halus.",
+            "skills": ["Figma", "Framer Motion", "GSAP", "CSS"],
+            "icon": "🎨"
+        },
+        {
+            "title": "Pengembangan API",
+            "description": "Merancang dan membangun RESTful dan GraphQL API dengan autentikasi, validasi, dan dokumentasi yang tepat.",
+            "skills": ["REST", "GraphQL", "JWT", "API Design"],
+            "icon": "🔌"
         },
         {
             "title": "Optimasi Performa",
-            "description": "Mengoptimalkan performa web untuk loading time yang super cepat dan interaksi yang smooth. Menerapkan best practices untuk SEO, Core Web Vitals, dan aksesibilitas."
-        },
-        {
-            "title": "Konsultasi Teknis",
-            "description": "Memberikan panduan teknis strategis untuk transformasi digital. Perencanaan arsitektur, pemilihan technology stack, dan solusi skalabilitas."
+            "description": "Mengoptimalkan aplikasi web untuk kecepatan, SEO, dan aksesibilitas guna memberikan pengalaman pengguna terbaik.",
+            "skills": ["Lighthouse", "SEO", "Web Vitals", "Optimization"],
+            "icon": "⚡"
         }
     ],
-    "cta": "Siap mewujudkan visi Anda?"
+    "cta": {
+        "title": "Siap Memulai Proyek?",
+        "description": "Mari berkolaborasi dan menciptakan sesuatu yang luar biasa bersama.",
+        "button": "Hubungi Saya"
+    }
 }

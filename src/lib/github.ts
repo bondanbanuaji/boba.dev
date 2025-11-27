@@ -81,6 +81,8 @@ const PROJECT_TECH_STACK: Record<string, string[]> = {
 
 export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promise<PinnedRepo[]> {
     try {
+        console.log('🔍 Fetching pinned repos from GitHub API...');
+        
         // Prepare headers with optional authentication
         const headers: HeadersInit = {
             'Content-Type': 'application/json',
@@ -90,6 +92,9 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
         const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN || process.env.GITHUB_TOKEN;
         if (token) {
             headers['Authorization'] = `Bearer ${token}`;
+            console.log('✅ GitHub token found and added to request');
+        } else {
+            console.warn('⚠️ No GitHub token found - API will be rate limited');
         }
 
         const response = await fetch(GITHUB_GRAPHQL_API, {
@@ -100,7 +105,7 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
                 variables: { username },
             }),
             next: {
-                revalidate: 3600, // Cache selama 1 jam
+                revalidate: 60, // Cache selama 1 menit (untuk testing, nanti bisa dinaikkan lagi)
             },
         });
 
@@ -119,11 +124,12 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
         const data = await response.json();
 
         if (data.errors) {
-            console.error('GraphQL errors:', data.errors);
+            console.error('❌ GraphQL errors:', data.errors);
             throw new Error('Failed to fetch pinned repositories');
         }
 
         const repos: GitHubRepo[] = data.data?.user?.pinnedItems?.nodes || [];
+        console.log(`✅ Successfully fetched ${repos.length} pinned repositories from GitHub`);
 
         // Transform data GitHub ke format yang diinginkan
         return repos
@@ -148,7 +154,8 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
                 };
             });
     } catch (error) {
-        console.error('Error fetching pinned repos:', error);
+        console.error('❌ Error fetching pinned repos:', error);
+        console.warn('⚠️ Using fallback data instead of live GitHub data');
         // Return fallback data jika API gagal
         return getFallbackProjects();
     }
@@ -182,7 +189,7 @@ function getFallbackProjects(): PinnedRepo[] {
             id: 'bobanimelist',
             title: 'Bobanimelist',
             description: 'bobanimelist — an anime and manga discovery platform built with React, TypeScript, and Redux Toolkit 🎬. Explore anime, manga, manhwa, and manhua with smooth animations, elegant dark/light themes 🌗',
-            tech: ['TypeScript', 'React', 'Redux Toolkit', 'TailwindCSS', 'Jikan API'],
+            tech: ['TypeScript', 'Jikan API', 'React', 'Redux Toolkit', 'TailwindCSS',],
             stars: 2,
             forks: 1,
             language: 'TypeScript',

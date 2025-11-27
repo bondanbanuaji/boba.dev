@@ -9,6 +9,7 @@ import servicesEN from '@/locales/en/services.json';
 import contactEN from '@/locales/en/contact.json';
 import footerEN from '@/locales/en/footer.json';
 import projectDescriptionsEN from '@/locales/en/project-descriptions.json';
+import workEN from '@/locales/en/work.json';
 
 import commonID from '@/locales/id/common.json';
 import heroID from '@/locales/id/hero.json';
@@ -18,6 +19,7 @@ import servicesID from '@/locales/id/services.json';
 import contactID from '@/locales/id/contact.json';
 import footerID from '@/locales/id/footer.json';
 import projectDescriptionsID from '@/locales/id/project-descriptions.json';
+import workID from '@/locales/id/work.json';
 
 const resources = {
     en: {
@@ -29,6 +31,7 @@ const resources = {
         contact: contactEN,
         footer: footerEN,
         projectDescriptions: projectDescriptionsEN,
+        work: workEN,
     },
     id: {
         common: commonID,
@@ -39,6 +42,7 @@ const resources = {
         contact: contactID,
         footer: footerID,
         projectDescriptions: projectDescriptionsID,
+        work: workID,
     },
 };
 
@@ -138,7 +142,7 @@ i18n
         lng: getInitialLanguage(),
         fallbackLng: 'en',
         defaultNS: 'common',
-        ns: ['common', 'hero', 'about', 'projects', 'services', 'contact', 'footer', 'projectDescriptions'],
+        ns: ['common', 'hero', 'about', 'projects', 'services', 'contact', 'footer', 'projectDescriptions', 'work'],
         interpolation: {
             escapeValue: false,
         },

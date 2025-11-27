@@ -36,6 +36,25 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head>
+        {/* Generator Meta Tags for Technology Detection */}
+        <meta name="generator" content="Next.js 16.0.3" />
+        <meta name="framework" content="Next.js" />
+        <meta name="runtime" content="React 19.2.0" />
+        <meta name="language" content="TypeScript" />
+        <meta name="styling" content="Tailwind CSS 4" />
+        <meta name="3d-library" content="Three.js 0.181" />
+        <meta name="animation" content="GSAP 3.13.0, Lenis 1.3.15" />
+        <meta name="icons" content="Lucide React, Font Awesome 7.1.0" />
+        <meta name="i18n" content="i18next, react-i18next" />
+        
+        {/* PWA Meta Tags */}
+        <meta name="application-name" content="Bondan Banuaji Portfolio" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Boba.dev" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#000000" />
+        
         {/* Hreflang Tags for Multi-language SEO */}
         <link rel="alternate" hrefLang="en" href="https://boba.dev" />
         <link rel="alternate" hrefLang="id" href="https://boba.dev" />
@@ -43,6 +62,9 @@ export default function RootLayout({
         
         {/* Canonical URL */}
         <link rel="canonical" href="https://boba.dev" />
+        
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
         
         {/* Enhanced Structured Data - Multiple Schemas */}
         <script

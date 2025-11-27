@@ -112,7 +112,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="hidden md:flex items-center gap-2 text-lg lg:text-xl border-b border-white/30 pb-1 hover:border-white transition-colors"
                     >
-                        View GitHub Profile
+                        {isMounted ? t('common:buttons.viewGithubProfile') : 'View GitHub Profile'}
                         <ExternalLink className="w-4 h-4" />
                     </a>
                 </div>
@@ -212,7 +212,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-lg border-b border-white/30 pb-1 hover:border-white transition-colors"
                     >
-                        View GitHub Profile
+                        {isMounted ? t('common:buttons.viewGithubProfile') : 'View GitHub Profile'}
                         <ExternalLink className="w-4 h-4" />
                     </a>
                 </div>

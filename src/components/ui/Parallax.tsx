@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface ParallaxProps {
     children: React.ReactNode;
-    speed?: number; // Negative for reverse direction
+    speed?: number;
     className?: string;
     id?: string;
 }

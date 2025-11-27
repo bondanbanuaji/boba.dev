@@ -2,33 +2,49 @@
     "section": {
         "subtitle": "What I Offer",
         "title": "Services",
-        "description": "Transforming ideas into exceptional digital experiences with precision, creativity, and technical excellence."
+        "description": "Specialized services to bring your digital ideas to life with cutting-edge technology and creative solutions."
     },
     "services": [
         {
             "title": "Web Development",
-            "description": "Crafting high-performance, scalable web applications with cutting-edge technologies. From responsive websites to complex web platforms, delivering seamless user experiences."
+            "description": "Building modern, responsive websites and web applications using the latest technologies and best practices.",
+            "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+            "icon": "🌐"
         },
         {
-            "title": "Frontend Development",
-            "description": "Pushing boundaries with immersive 3D experiences and interactive animations. Bringing designs to life with WebGL, Three.js, and advanced motion graphics."
+            "title": "Full Stack Development",
+            "description": "End-to-end development from database design to frontend implementation with seamless API integration.",
+            "skills": ["Node.js", "Express", "PostgreSQL", "MongoDB"],
+            "icon": "⚙️"
         },
         {
-            "title": "UI/UX Design",
-            "description": "Designing intuitive, user-centered interfaces that blend aesthetics with functionality. Creating memorable digital experiences that users love."
+            "title": "3D Web Experiences",
+            "description": "Creating immersive 3D experiences and animations using Three.js, WebGL, and GSAP for engaging user interactions.",
+            "skills": ["Three.js", "WebGL", "GSAP", "Blender"],
+            "icon": "✨"
         },
         {
-            "title": "Full-Stack Development",
-            "description": "Building end-to-end solutions with modern backend architectures and databases. Seamlessly integrating frontend and backend for robust applications."
+            "title": "UI/UX Development",
+            "description": "Translating designs into pixel-perfect, interactive interfaces with smooth animations and transitions.",
+            "skills": ["Figma", "Framer Motion", "GSAP", "CSS"],
+            "icon": "🎨"
+        },
+        {
+            "title": "API Development",
+            "description": "Designing and building RESTful and GraphQL APIs with proper authentication, validation, and documentation.",
+            "skills": ["REST", "GraphQL", "JWT", "API Design"],
+            "icon": "🔌"
         },
         {
             "title": "Performance Optimization",
-            "description": "Optimizing web performance for lightning-fast load times and smooth interactions. Implementing best practices for SEO, Core Web Vitals, and accessibility."
-        },
-        {
-            "title": "Technical Consulting",
-            "description": "Providing strategic technical guidance for digital transformation. Architecture planning, technology stack selection, and scalability solutions."
+            "description": "Optimizing web applications for speed, SEO, and accessibility to deliver the best user experience.",
+            "skills": ["Lighthouse", "SEO", "Web Vitals", "Optimization"],
+            "icon": "⚡"
         }
     ],
-    "cta": "Ready to bring your vision to life?"
+    "cta": {
+        "title": "Ready to Start a Project?",
+        "description": "Let's collaborate and create something extraordinary together.",
+        "button": "Get In Touch"
+    }
 }

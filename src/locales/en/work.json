@@ -1,0 +1,16 @@
+{
+    "section": {
+        "subtitle": "Portfolio",
+        "title": "My Work",
+        "description": "Explore my featured projects showcasing creative development and technical excellence."
+    },
+    "comingSoon": {
+        "icon": "🚧",
+        "title": "Full Portfolio Coming Soon",
+        "description": "In the meantime, check out my featured projects on the homepage or visit my GitHub to see all my work.",
+        "buttons": {
+            "viewProjects": "View Projects",
+            "github": "GitHub"
+        }
+    }
+}

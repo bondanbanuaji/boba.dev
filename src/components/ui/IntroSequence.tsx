@@ -21,6 +21,37 @@ export default function IntroSequence() {
         setIsMounted(true);
     }, []);
 
+    // Disable scroll saat IntroSequence aktif
+    useEffect(() => {
+        if (step !== 'complete') {
+            // Disable scroll
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            
+            // Disable scroll di Lenis juga (desktop)
+            if (typeof window !== 'undefined') {
+                const lenis = (window as any).lenis;
+                if (lenis) {
+                    lenis.stop();
+                }
+            }
+        }
+
+        return () => {
+            // Re-enable scroll
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            
+            // Re-enable Lenis
+            if (typeof window !== 'undefined') {
+                const lenis = (window as any).lenis;
+                if (lenis) {
+                    lenis.start();
+                }
+            }
+        };
+    }, [step]);
+
     useEffect(() => {
         const timer = setInterval(() => {
             setProgress((prev) => {
@@ -155,6 +186,7 @@ export default function IntroSequence() {
     const timeGreeting = isMounted ? getTimeBasedGreeting(i18n.language) : 'good morning';
 
     const handleGreetingComplete = () => {
+        // Tahan 4-5 detik sebelum slide up
         setTimeout(() => {
             gsap.to(containerRef.current, {
                 y: '-100%',
@@ -165,7 +197,7 @@ export default function IntroSequence() {
                     window.dispatchEvent(new Event('intro-complete'));
                 }
             });
-        }, 2000);
+        }, 4500); // 4.5 detik
     };
 
     if (step === 'complete') return null;
@@ -210,12 +242,12 @@ export default function IntroSequence() {
                             <SplitText
                                 text={`${isMounted ? t('intro.greeting') : 'Hello'} ${timeGreeting}, ${name}!`}
                                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight text-center !leading-[1.2] sm:!leading-[1.3]"
-                                delay={100}
-                                duration={0.6}
+                                delay={50}
+                                duration={0.5}
                                 ease="power3.out"
-                                splitType="words"
-                                from={{ opacity: 0, y: 40 }}
-                                to={{ opacity: 1, y: 0 }}
+                                splitType="chars"
+                                from={{ opacity: 0, y: 30, scale: 0.8 }}
+                                to={{ opacity: 1, y: 0, scale: 1 }}
                                 threshold={0.1}
                                 rootMargin="-100px"
                                 textAlign="center"

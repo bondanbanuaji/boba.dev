@@ -1,0 +1,16 @@
+{
+    "section": {
+        "subtitle": "Portofolio",
+        "title": "Karya Saya",
+        "description": "Jelajahi proyek-proyek unggulan saya yang menampilkan pengembangan kreatif dan keunggulan teknis."
+    },
+    "comingSoon": {
+        "icon": "🚧",
+        "title": "Portofolio Lengkap Segera Hadir",
+        "description": "Sementara itu, lihat proyek-proyek unggulan saya di halaman utama atau kunjungi GitHub saya untuk melihat semua karya saya.",
+        "buttons": {
+            "viewProjects": "Lihat Proyek",
+            "github": "GitHub"
+        }
+    }
+}

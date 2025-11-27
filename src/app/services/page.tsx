@@ -1,57 +1,34 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import Parallax from '@/components/ui/Parallax';
 import MagneticButton from '@/components/ui/MagneticButton';
 import StarBorder from '@/components/StarBorder';
 import Link from 'next/link';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const services = [
-    {
-        title: 'Web Development',
-        description: 'Building modern, responsive websites and web applications using the latest technologies and best practices.',
-        skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-        icon: '🌐',
-    },
-    {
-        title: 'Full Stack Development',
-        description: 'End-to-end development from database design to frontend implementation with seamless API integration.',
-        skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB'],
-        icon: '⚙️',
-    },
-    {
-        title: '3D Web Experiences',
-        description: 'Creating immersive 3D experiences and animations using Three.js, WebGL, and GSAP for engaging user interactions.',
-        skills: ['Three.js', 'WebGL', 'GSAP', 'Blender'],
-        icon: '✨',
-    },
-    {
-        title: 'UI/UX Development',
-        description: 'Translating designs into pixel-perfect, interactive interfaces with smooth animations and transitions.',
-        skills: ['Figma', 'Framer Motion', 'GSAP', 'CSS'],
-        icon: '🎨',
-    },
-    {
-        title: 'API Development',
-        description: 'Designing and building RESTful and GraphQL APIs with proper authentication, validation, and documentation.',
-        skills: ['REST', 'GraphQL', 'JWT', 'API Design'],
-        icon: '🔌',
-    },
-    {
-        title: 'Performance Optimization',
-        description: 'Optimizing web applications for speed, SEO, and accessibility to deliver the best user experience.',
-        skills: ['Lighthouse', 'SEO', 'Web Vitals', 'Optimization'],
-        icon: '⚡',
-    },
-];
-
 export default function ServicesPage() {
+    const { t } = useTranslation('services');
+    const [isMounted, setIsMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    // Get services from translations
+    const services = isMounted ? t('services', { returnObjects: true }) as Array<{
+        title: string;
+        description: string;
+        skills: string[];
+        icon: string;
+    }> : [];
 
     useGSAP(() => {
         if (!containerRef.current) return;
@@ -108,18 +85,18 @@ export default function ServicesPage() {
                     <Parallax speed={-0.03}>
                         <div className="mb-6">
                             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/50 font-semibold">
-                                What I Offer
+                                {isMounted ? t('section.subtitle') : 'What I Offer'}
                             </span>
                         </div>
                         <h1 className="services-title text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-none mb-8">
-                            {'Services'.split('').map((char, i) => (
+                            {(isMounted ? t('section.title') : 'Services').split('').map((char, i) => (
                                 <span key={i} className="service-title-char inline-block">
                                     {char}
                                 </span>
                             ))}
                         </h1>
                         <p className="text-lg md:text-xl lg:text-2xl opacity-70 max-w-3xl mx-auto font-light">
-                            Specialized services to bring your digital ideas to life with cutting-edge technology and creative solutions.
+                            {isMounted ? t('section.description') : 'Specialized services to bring your digital ideas to life with cutting-edge technology and creative solutions.'}
                         </p>
                     </Parallax>
                 </div>
@@ -174,17 +151,17 @@ export default function ServicesPage() {
                 {/* CTA Section */}
                 <div className="text-center py-16 md:py-20">
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-                        Ready to Start a Project?
+                        {isMounted ? t('cta.title') : 'Ready to Start a Project?'}
                     </h2>
                     <p className="text-lg md:text-xl opacity-70 mb-10 max-w-2xl mx-auto">
-                        Let&apos;s collaborate and create something extraordinary together.
+                        {isMounted ? t('cta.description') : "Let's collaborate and create something extraordinary together."}
                     </p>
                     <MagneticButton strength={0.3}>
                         <Link
                             href="/contact"
                             className="inline-block px-10 py-5 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors"
                         >
-                            Get In Touch
+                            {isMounted ? t('cta.button') : 'Get In Touch'}
                         </Link>
                     </MagneticButton>
                 </div>

@@ -76,18 +76,45 @@ export function getDeviceInfo(): DeviceInfo {
   };
 }
 
-async function getIPBasedLocation(): Promise<{ ip: string; city: string; region: string; country: string }> {
+async function getIPBasedLocation(): Promise<Partial<DetailedLocationInfo>> {
   try {
     const res = await fetch('https://ipapi.co/json/');
     const data = await res.json();
+    
+    const latitude = data.latitude || null;
+    const longitude = data.longitude || null;
+    
     return {
       ip: data.ip || 'Unknown',
+      latitude,
+      longitude,
+      accuracy: data.accuracy || null,
+      mapsLink: latitude && longitude ? `https://www.google.com/maps?q=${latitude},${longitude}` : '-',
+      address: data.city || '-',
+      village: '-',
+      district: data.region || '-',
       city: data.city || 'Unknown',
-      region: data.region || 'Unknown',
+      province: data.region || 'Unknown',
       country: data.country_name || 'Unknown',
+      postalCode: data.postal || '-',
+      fullAddress: `${data.city || ''}, ${data.region || ''}, ${data.country_name || ''}`.replace(/^,\s*|,\s*$/g, ''),
     };
   } catch (error) {
-    return { ip: 'Unknown', city: 'Unknown', region: 'Unknown', country: 'Unknown' };
+    return { 
+      ip: 'Unknown', 
+      latitude: null,
+      longitude: null,
+      accuracy: null,
+      mapsLink: '-',
+      address: '-',
+      village: '-',
+      district: '-',
+      city: 'Unknown', 
+      province: 'Unknown', 
+      country: 'Unknown',
+      postalCode: '-',
+      fullAddress: 'Unknown',
+    };
   }
 }
 
@@ -130,70 +157,42 @@ async function reverseGeocode(lat: number, lon: number): Promise<Partial<Detaile
   }
 }
 
-function getGPSLocation(): Promise<GeolocationPosition | null> {
-  return new Promise((resolve) => {
-    if (!navigator.geolocation) {
-      resolve(null);
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => resolve(position),
-      (error) => {
-        console.warn('GPS location denied or unavailable:', error.message);
-        resolve(null);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      }
-    );
-  });
-}
-
 export async function getDetailedLocationInfo(): Promise<DetailedLocationInfo> {
   const ipData = await getIPBasedLocation();
   
-  const gpsPosition = await getGPSLocation();
-  
-  if (gpsPosition) {
-    const lat = gpsPosition.coords.latitude;
-    const lon = gpsPosition.coords.longitude;
-    const accuracy = gpsPosition.coords.accuracy;
-    
-    const geocodeData = await reverseGeocode(lat, lon);
+  if (ipData.latitude && ipData.longitude) {
+    const geocodeData = await reverseGeocode(ipData.latitude, ipData.longitude);
     
     return {
-      ip: ipData.ip,
-      latitude: lat,
-      longitude: lon,
-      accuracy,
-      mapsLink: `https://www.google.com/maps?q=${lat},${lon}`,
-      address: geocodeData.address || '-',
-      village: geocodeData.village || '-',
-      district: geocodeData.district || '-',
-      city: geocodeData.city || ipData.city,
-      province: geocodeData.province || ipData.region,
-      country: geocodeData.country || ipData.country,
-      postalCode: geocodeData.postalCode || '-',
-      fullAddress: geocodeData.fullAddress || `${ipData.city}, ${ipData.region}, ${ipData.country}`,
+      ip: ipData.ip || 'Unknown',
+      latitude: ipData.latitude ?? null,
+      longitude: ipData.longitude ?? null,
+      accuracy: ipData.accuracy ?? null,
+      mapsLink: ipData.mapsLink || '-',
+      address: geocodeData.address || ipData.address || '-',
+      village: geocodeData.village || ipData.village || '-',
+      district: geocodeData.district || ipData.district || '-',
+      city: geocodeData.city || ipData.city || 'Unknown',
+      province: geocodeData.province || ipData.province || 'Unknown',
+      country: geocodeData.country || ipData.country || 'Unknown',
+      postalCode: geocodeData.postalCode || ipData.postalCode || '-',
+      fullAddress: geocodeData.fullAddress || ipData.fullAddress || 'Unknown',
     };
   }
   
   return {
-    ip: ipData.ip,
-    latitude: null,
-    longitude: null,
-    accuracy: null,
-    mapsLink: '-',
-    address: '-',
-    village: '-',
-    district: '-',
-    city: ipData.city,
-    province: ipData.region,
-    country: ipData.country,
-    postalCode: '-',
-    fullAddress: `${ipData.city}, ${ipData.region}, ${ipData.country}`,
+    ip: ipData.ip || 'Unknown',
+    latitude: ipData.latitude ?? null,
+    longitude: ipData.longitude ?? null,
+    accuracy: ipData.accuracy ?? null,
+    mapsLink: ipData.mapsLink || '-',
+    address: ipData.address || '-',
+    village: ipData.village || '-',
+    district: ipData.district || '-',
+    city: ipData.city || 'Unknown',
+    province: ipData.province || 'Unknown',
+    country: ipData.country || 'Unknown',
+    postalCode: ipData.postalCode || '-',
+    fullAddress: ipData.fullAddress || 'Unknown',
   };
 }

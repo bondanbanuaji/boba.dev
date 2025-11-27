@@ -1,17 +1,25 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import Parallax from '@/components/ui/Parallax';
 import MagneticButton from '@/components/ui/MagneticButton';
 import Link from 'next/link';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WorkPage() {
+    const { t } = useTranslation('work');
+    const [isMounted, setIsMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useGSAP(() => {
         if (!containerRef.current) return;
@@ -45,18 +53,18 @@ export default function WorkPage() {
                     <Parallax speed={-0.03}>
                         <div className="mb-6">
                             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/50 font-semibold">
-                                Portfolio
+                                {isMounted ? t('section.subtitle') : 'Portfolio'}
                             </span>
                         </div>
                         <h1 className="work-title text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-none mb-8">
-                            {'My Work'.split('').map((char, i) => (
+                            {(isMounted ? t('section.title') : 'My Work').split('').map((char, i) => (
                                 <span key={i} className="work-title-char inline-block">
                                     {char === ' ' ? '\u00A0' : char}
                                 </span>
                             ))}
                         </h1>
                         <p className="text-lg md:text-xl lg:text-2xl opacity-70 max-w-3xl mx-auto font-light">
-                            Explore my featured projects showcasing creative development and technical excellence.
+                            {isMounted ? t('section.description') : 'Explore my featured projects showcasing creative development and technical excellence.'}
                         </p>
                     </Parallax>
                 </div>
@@ -64,12 +72,12 @@ export default function WorkPage() {
                 {/* Coming Soon / Link to Homepage Projects */}
                 <div className="text-center py-20">
                     <div className="max-w-2xl mx-auto space-y-8">
-                        <div className="text-6xl mb-6">🚧</div>
+                        <div className="text-6xl mb-6">{isMounted ? t('comingSoon.icon') : '🚧'}</div>
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Full Portfolio Coming Soon
+                            {isMounted ? t('comingSoon.title') : 'Full Portfolio Coming Soon'}
                         </h2>
                         <p className="text-lg opacity-70 mb-8">
-                            In the meantime, check out my featured projects on the homepage or visit my GitHub to see all my work.
+                            {isMounted ? t('comingSoon.description') : 'In the meantime, check out my featured projects on the homepage or visit my GitHub to see all my work.'}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <MagneticButton strength={0.3}>
@@ -77,7 +85,7 @@ export default function WorkPage() {
                                     href="/#work"
                                     className="inline-block px-8 py-4 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors"
                                 >
-                                    View Projects
+                                    {isMounted ? t('comingSoon.buttons.viewProjects') : 'View Projects'}
                                 </Link>
                             </MagneticButton>
                             <MagneticButton strength={0.3}>
@@ -87,7 +95,7 @@ export default function WorkPage() {
                                     rel="noopener noreferrer"
                                     className="inline-block px-8 py-4 border border-white/30 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-colors"
                                 >
-                                    GitHub
+                                    {isMounted ? t('comingSoon.buttons.github') : 'GitHub'}
                                 </a>
                             </MagneticButton>
                         </div>

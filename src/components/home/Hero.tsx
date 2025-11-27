@@ -61,7 +61,7 @@ export default function Hero() {
             <div className="relative z-10 w-full flex flex-col items-center">
                 <Parallax speed={-0.1} className="mb-6 lg:mb-10">
                     <h1 className="hero-subtitle text-sm md:text-xl lg:text-2xl font-light tracking-[0.3em] uppercase text-white/70 mb-4">
-                        {isMounted ? t('subtitle') : 'Bondan Banuaji (Boba) - Full Stack Developer Portfolio | Creative Technologist from Karawang, Indonesia'}
+                        {isMounted ? t('subtitle') : 'PORTFOLIO | FULL-STACK WEB DEVELOPER'}
                     </h1>
                 </Parallax>
 
@@ -109,7 +109,8 @@ export default function Hero() {
                             {isMounted ? t('scroll.desktop') : 'Scroll Mouse'}
                         </span>
                     </span>
-                    <div className="relative w-[1px] h-10 sm:h-12 md:h-16 lg:h-20 xl:h-24" style={{ overflow: 'hidden' }}>
+                    <br />
+                    <div className="relative w-[1px] h-14 sm:h-16 md:h-20 lg:h-24 xl:h-28" style={{ overflow: 'hidden' }}>
                         <div className="absolute inset-0 bg-white animate-scrollY"></div>
                     </div>
                 </div>
