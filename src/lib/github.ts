@@ -71,6 +71,14 @@ const PROJECT_IMAGES: Record<string, string> = {
     'Heart-Disease-Risk-Prediction': '/img/projects/heart-disease.jpg',
 };
 
+// Mapping untuk custom tech stack setiap project
+const PROJECT_TECH_STACK: Record<string, string[]> = {
+    'yuibot-v1': ['Python', 'Telegram Bot API', 'Gemini AI'],
+    'bobanimelist': ['TypeScript', 'React', 'Redux Toolkit', 'TailwindCSS'],
+    'taimuchatto': ['JavaScript', 'React', 'Node.js', 'Socket.io'],
+    'Heart-Disease-Risk-Prediction': ['Python', 'Streamlit', 'Machine Learning', 'Scikit-learn'],
+};
+
 export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promise<PinnedRepo[]> {
     try {
         // Prepare headers with optional authentication
@@ -121,14 +129,15 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
         return repos
             .filter((repo) => !repo.isPrivate) // Filter hanya public repos
             .map((repo) => {
-                // Ambil top 4 languages
-                const languages = repo.languages.nodes.slice(0, 4).map((lang) => lang.name);
+                // Gunakan custom tech stack jika tersedia, fallback ke GitHub languages
+                const techStack = PROJECT_TECH_STACK[repo.name] || 
+                    repo.languages.nodes.slice(0, 4).map((lang) => lang.name);
 
                 return {
                     id: repo.name,
                     title: formatRepoName(repo.name),
                     description: repo.description || 'No description provided',
-                    tech: languages,
+                    tech: techStack,
                     stars: repo.stargazerCount,
                     forks: repo.forkCount,
                     language: repo.primaryLanguage?.name || 'Unknown',
@@ -173,7 +182,7 @@ function getFallbackProjects(): PinnedRepo[] {
             id: 'bobanimelist',
             title: 'Bobanimelist',
             description: 'bobanimelist — an anime and manga discovery platform built with React, TypeScript, and Redux Toolkit 🎬. Explore anime, manga, manhwa, and manhua with smooth animations, elegant dark/light themes 🌗',
-            tech: ['TypeScript', 'React', 'Redux Toolkit', 'TailwindCSS'],
+            tech: ['TypeScript', 'React', 'Redux Toolkit', 'TailwindCSS', 'Jikan API'],
             stars: 2,
             forks: 1,
             language: 'TypeScript',
@@ -186,7 +195,7 @@ function getFallbackProjects(): PinnedRepo[] {
             id: 'taimuchatto',
             title: 'Taimuchatto',
             description: '🧋 TaimuChatto is a real-time, full-stack chat application utilizing the MERN Stack (MongoDB, Express, React, Node.js) and Socket.io. It features secure JWT authentication and instant messaging.',
-            tech: ['JavaScript', 'React', 'Node.js', 'Socket.io'],
+            tech: ['JavaScript', 'React', 'Node.js', 'Socket.io', 'Mongo DB', 'Express.js'],
             stars: 2,
             forks: 0,
             language: 'JavaScript',

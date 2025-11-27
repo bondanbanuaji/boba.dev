@@ -8,7 +8,7 @@ import Parallax from '@/components/ui/Parallax';
 import FallingText from '@/components/FallingText';
 import LogoLoop from '@/components/LogoLoop';
 import StarBorder from '@/components/StarBorder';
-import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiLaravel, SiPython, SiThreedotjs, SiGreensock, SiTailwindcss, SiMongodb, SiMysql, SiPostgresql } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs, SiLaravel, SiPhp, SiPython, SiThreedotjs, SiGreensock, SiFramer, SiTailwindcss, SiMongodb, SiMysql, SiPostgresql, SiVuedotjs, SiGit, SiGithub, SiVercel } from 'react-icons/si';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,22 +16,29 @@ const stats = [
     { number: '559+', label: 'Contributions', sublabel: 'Last Year' },
     { number: '30+', label: 'Projects', sublabel: 'Built' },
     { number: '5+', label: 'Tech Stacks', sublabel: 'Mastered' },
-    { number: '100%', label: 'Dedication', sublabel: 'Always' },
+    { number: '97%', label: 'Dedication', sublabel: 'Always' },
 ];
 
 const techLogos = [
     { node: <SiReact className="text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
     { node: <SiNextdotjs className="text-white" />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiJavascript className="text-[#F7DF1E]" />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
     { node: <SiTypescript className="text-[#3178C6]" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
     { node: <SiNodedotjs className="text-[#339933]" />, title: "Node.js", href: "https://nodejs.org" },
     { node: <SiLaravel className="text-[#FF2D20]" />, title: "Laravel", href: "https://laravel.com" },
+    { node: <SiPhp className="text-[#777BB4]" />, title: "PHP", href: "https://www.php.net" },
+    { node: <SiVuedotjs className="text-[#41B883]" />, title: "Vue.js", href: "https://vuejs.org" },
     { node: <SiPython className="text-[#3776AB]" />, title: "Python", href: "https://www.python.org" },
     { node: <SiThreedotjs className="text-white" />, title: "Three.js", href: "https://threejs.org" },
     { node: <SiGreensock className="text-[#88CE02]" />, title: "GSAP", href: "https://greensock.com/gsap" },
+    { node: <SiFramer className="text-[#0055FF]" />, title: "Framer Motion", href: "https://www.framer.com/motion" },
     { node: <SiTailwindcss className="text-[#06B6D4]" />, title: "TailwindCSS", href: "https://tailwindcss.com" },
     { node: <SiMongodb className="text-[#47A248]" />, title: "MongoDB", href: "https://www.mongodb.com" },
     { node: <SiMysql className="text-[#4479A1]" />, title: "MySQL", href: "https://www.mysql.com" },
     { node: <SiPostgresql className="text-[#4169E1]" />, title: "PostgreSQL", href: "https://www.postgresql.org" },
+    { node: <SiGit className="text-[#F05032]" />, title: "Git", href: "https://git-scm.com" },
+    { node: <SiGithub className="text-white" />, title: "GitHub", href: "https://github.com" },
+    { node: <SiVercel className="text-white" />, title: "Vercel", href: "https://vercel.com" },
 ];
 
 const hobbies = [
@@ -307,18 +314,14 @@ export default function About() {
                         <div className="profile-card relative group h-full">
                             <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/30 transition-all duration-500 h-full">
                                 
-                                {/* Profile Image */}
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img 
                                     src="https://avatars.githubusercontent.com/bondanbanuaji" 
                                     alt="Bondan Banuaji"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
 
-                                {/* Gradient Overlay on Hover */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
 
-                                {/* Decorative Elements */}
                                 <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white/20 rounded-full blur-sm opacity-50"></div>
                                 <div className="absolute bottom-4 left-4 w-32 h-32 border-2 border-white/20 rounded-full blur-sm opacity-50"></div>
                             </div>
