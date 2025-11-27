@@ -1,0 +1,18 @@
+{
+    "yuibot-v1": {
+        "title": "Yuibot V1",
+        "description": "🤖 Yui-Bot: A tsundere-inspired Telegram chatbot (K-ON! Yui Hirasawa) with memory, vent mode, fun commands & Gemini API."
+    },
+    "bobanimelist": {
+        "title": "Bobanimelist",
+        "description": "bobanimelist — an anime and manga discovery platform built with React, TypeScript, and Redux Toolkit 🎬. Explore anime, manga, manhwa, and manhua with smooth animations, elegant dark/light themes 🌗"
+    },
+    "taimuchatto": {
+        "title": "Taimuchatto",
+        "description": "🧋 TaimuChatto is a real-time, full-stack chat application utilizing the MERN Stack (MongoDB, Express, React, Node.js) and Socket.io. It features secure JWT authentication and instant messaging."
+    },
+    "Heart-Disease-Risk-Prediction": {
+        "title": "Heart Disease Risk Prediction",
+        "description": "A web application built with Streamlit for predicting heart disease risk based on demographic and lifestyle factors using a trained C4.5 Decision Tree model."
+    }
+}

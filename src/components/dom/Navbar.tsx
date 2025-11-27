@@ -4,35 +4,47 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { useTranslation } from 'react-i18next';
 import MagneticButton from '@/components/ui/MagneticButton';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { useLenis } from '@/components/layout/SmoothScroll';
+import '@/lib/i18n';
 
-const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Work', href: '#work' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
-];
+
 
 export default function Navbar() {
+    const { t } = useTranslation('common');
     const navRef = useRef<HTMLElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const lenis = useLenis();
+
+    // Prevent hydration mismatch by only rendering translations after mount
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const navLinks = [
+        { name: isMounted ? t('nav.home') : 'Home', href: '#home' },
+        { name: isMounted ? t('nav.about') : 'About', href: '#about' },
+        { name: isMounted ? t('nav.work') : 'Work', href: '#work' },
+        { name: isMounted ? t('nav.services') : 'Services', href: '#services' },
+        { name: isMounted ? t('nav.contact') : 'Contact', href: '#contact' },
+    ];
 
     const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         const targetId = href.replace('#', '');
         const targetElement = document.getElementById(targetId);
-        
+
         if (targetElement && lenis) {
             lenis.scrollTo(targetElement, {
                 offset: 0,
                 duration: 1.5,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
-            
+
             // Close mobile menu if open
             if (isOpen) {
                 setIsOpen(false);
@@ -109,7 +121,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop Menu */}
-                <div className='hidden md:flex gap-8'>
+                <div className='hidden md:flex gap-8 items-center'>
                     {navLinks.map((link) => (
                         <MagneticButton key={link.name} strength={0.2} className="inline-block">
                             <a
@@ -121,6 +133,9 @@ export default function Navbar() {
                             </a>
                         </MagneticButton>
                     ))}
+                    <div className='nav-link-desktop'>
+                        <LanguageSwitcher />
+                    </div>
                 </div>
 
                 {/* Mobile Menu Toggle */}
@@ -129,7 +144,7 @@ export default function Navbar() {
                         onClick={() => setIsOpen(!isOpen)}
                         className='text-sm uppercase tracking-widest hover:opacity-70 transition-opacity'
                     >
-                        {isOpen ? 'Close' : 'Menu'}
+                        {isOpen ? (isMounted ? t('nav.close') : 'Close') : (isMounted ? t('nav.menu') : 'Menu')}
                     </button>
                 </div>
             </nav>
@@ -152,6 +167,11 @@ export default function Navbar() {
                             </a>
                         </div>
                     ))}
+                    <div className='mobile-nav-link mt-4'>
+                        <div className='bg-black px-6 py-3 rounded-full'>
+                            <LanguageSwitcher />
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

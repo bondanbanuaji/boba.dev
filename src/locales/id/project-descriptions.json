@@ -1,0 +1,18 @@
+{
+    "yuibot-v1": {
+        "title": "Yuibot V1",
+        "description": "🤖 Yui-Bot: Chatbot Telegram terinspirasi dari karakter tsundere (K-ON! Yui Hirasawa) dengan memori, mode curhat, perintah seru & Gemini API."
+    },
+    "bobanimelist": {
+        "title": "Bobanimelist",
+        "description": "bobanimelist — platform penemuan anime dan manga yang dibangun dengan React, TypeScript, dan Redux Toolkit 🎬. Jelajahi anime, manga, manhwa, dan manhua dengan animasi smooth dan tema dark/light yang elegan 🌗"
+    },
+    "taimuchatto": {
+        "title": "Taimuchatto",
+        "description": "🧋 TaimuChatto adalah aplikasi chat full-stack real-time menggunakan MERN Stack (MongoDB, Express, React, Node.js) dan Socket.io. Dilengkapi dengan autentikasi JWT yang aman dan pesan instan."
+    },
+    "Heart-Disease-Risk-Prediction": {
+        "title": "Prediksi Risiko Penyakit Jantung",
+        "description": "Aplikasi web yang dibangun dengan Streamlit untuk memprediksi risiko penyakit jantung berdasarkan faktor demografis dan gaya hidup menggunakan model C4.5 Decision Tree yang terlatih."
+    }
+}

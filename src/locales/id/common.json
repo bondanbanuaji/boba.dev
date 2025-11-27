@@ -1,0 +1,29 @@
+{
+    "nav": {
+        "home": "Beranda",
+        "about": "Tentang",
+        "work": "Karya",
+        "services": "Layanan",
+        "contact": "Kontak",
+        "menu": "Menu",
+        "close": "Tutup"
+    },
+    "intro": {
+        "question": "Siapa nama kamu?",
+        "placeholder": "Ketik di sini...",
+        "button": "Masuk",
+        "greeting": "Halo"
+    },
+    "buttons": {
+        "viewMore": "Lihat Selengkapnya",
+        "learnMore": "Pelajari Lebih Lanjut",
+        "getInTouch": "Hubungi Saya",
+        "submit": "Kirim",
+        "viewGithub": "Lihat di GitHub",
+        "viewProfile": "Lihat Profil GitHub"
+    },
+    "common": {
+        "loading": "Memuat...",
+        "top": "Atas"
+    }
+}

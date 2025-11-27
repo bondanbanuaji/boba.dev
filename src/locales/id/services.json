@@ -1,0 +1,34 @@
+{
+    "section": {
+        "subtitle": "Apa yang Saya Tawarkan",
+        "title": "Layanan",
+        "description": "Mengubah ide menjadi pengalaman digital yang luar biasa dengan presisi, kreativitas, dan keunggulan teknis."
+    },
+    "services": [
+        {
+            "title": "Pengembangan Web",
+            "description": "Membuat aplikasi web berkinerja tinggi dan scalable dengan teknologi terkini. Dari website responsif hingga platform web kompleks, menghadirkan pengalaman pengguna yang seamless."
+        },
+        {
+            "title": "Pengembangan Kreatif",
+            "description": "Mendorong batasan dengan pengalaman 3D yang imersif dan animasi interaktif. Menghidupkan desain dengan WebGL, Three.js, dan motion graphics tingkat lanjut."
+        },
+        {
+            "title": "Desain UI/UX",
+            "description": "Merancang antarmuka yang intuitif dan berpusat pada pengguna yang memadukan estetika dengan fungsionalitas. Menciptakan pengalaman digital yang berkesan dan disukai pengguna."
+        },
+        {
+            "title": "Pengembangan Full-Stack",
+            "description": "Membangun solusi end-to-end dengan arsitektur backend modern dan database. Mengintegrasikan frontend dan backend secara seamless untuk aplikasi yang robust."
+        },
+        {
+            "title": "Optimasi Performa",
+            "description": "Mengoptimalkan performa web untuk loading time yang super cepat dan interaksi yang smooth. Menerapkan best practices untuk SEO, Core Web Vitals, dan aksesibilitas."
+        },
+        {
+            "title": "Konsultasi Teknis",
+            "description": "Memberikan panduan teknis strategis untuk transformasi digital. Perencanaan arsitektur, pemilihan technology stack, dan solusi skalabilitas."
+        }
+    ],
+    "cta": "Siap mewujudkan visi Anda?"
+}

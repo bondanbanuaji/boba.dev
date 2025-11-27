@@ -166,15 +166,17 @@ const SplitText: React.FC<SplitTextProps> = ({
     const renderTag = () => {
         const style: React.CSSProperties = {
             textAlign,
-            overflow: 'hidden',
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
+            overflow: 'visible',
+            display: 'block',
+            whiteSpace: 'normal',
             wordWrap: 'break-word',
-            willChange: 'transform, opacity'
+            overflowWrap: 'break-word',
+            hyphens: 'auto',
+            willChange: 'transform, opacity',
+            width: '100%'
         };
         const classes = `split-parent ${className}`;
 
-        // Helper to render with ref
         const props = { ref: ref as React.RefObject<HTMLHeadingElement | HTMLParagraphElement>, style, className: classes };
 
         switch (tag) {

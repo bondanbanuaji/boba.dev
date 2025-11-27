@@ -1,0 +1,8 @@
+{
+    "section": {
+        "title": "Work Projects",
+        "description": "A collection of my featured open-source projects from GitHub."
+    },
+    "loading": "Loading projects...",
+    "viewOnGithub": "View on GitHub"
+}

@@ -1,19 +1,27 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import MagneticButton from '@/components/ui/MagneticButton';
 import Parallax from '@/components/ui/Parallax';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
+    const { t } = useTranslation('contact');
+    const [isMounted, setIsMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useGSAP(() => {
         gsap.from('.contact-title', {
@@ -32,8 +40,8 @@ export default function Contact() {
         <section id="contact" ref={containerRef} className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10 flex flex-col items-center justify-center min-h-[70vh]">
             <div className="max-w-[90vw] mx-auto text-center">
                 <Parallax speed={-0.1}>
-                    <h2 className="contact-title text-[12vw] leading-[0.8] font-bold tracking-tighter mb-8 md:mb-12 lg:mb-16 mix-blend-difference">
-                        Let&apos;s Work<br />Together
+                    <h2 className="contact-title text-[12vw] leading-[0.8] font-bold tracking-tighter mb-8 md:mb-12 lg:mb-16 mix-blend-difference" style={{ whiteSpace: 'pre-line' }}>
+                        {isMounted ? t('section.title') : "Let's Work\nTogether"}
                     </h2>
                 </Parallax>
 
@@ -46,7 +54,7 @@ export default function Contact() {
                             className="px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors text-sm md:text-base lg:text-xl flex items-center gap-3"
                         >
                             <FontAwesomeIcon icon={faWhatsapp} className="w-5 h-5 md:w-6 md:h-6 text-2xl" />
-                            Contact Me
+                            {isMounted ? t('section.button') : 'Contact Me'}
                         </Link>
                     </MagneticButton>
                 </Parallax>

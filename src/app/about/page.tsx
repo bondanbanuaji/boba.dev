@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,10 +10,10 @@ import MagneticButton from '@/components/ui/MagneticButton';
 import Link from 'next/link';
 import { Canvas } from '@react-three/fiber';
 import About3D from '@/components/canvas/About3D';
+import { useTranslation } from 'react-i18next';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// SEO would be added via metadata export in a separate file or parent layout
 
 // Skills data
 const skills = {
@@ -23,72 +23,6 @@ const skills = {
     designTools: ['Figma', 'Blender'],
     testing: ['Jest']
 };
-
-// Experience data
-const experience = [
-    {
-        role: 'Senior Frontend Developer',
-        company: 'TechCorp Inc.',
-        period: '2022 - Present',
-        description: [
-            'Led a team of 5 developers in rebuilding the core product dashboard.',
-            'Improved application performance by 60% through code splitting and optimization.',
-            'Implemented a comprehensive design system using React and Tailwind CSS.'
-        ]
-    },
-    {
-        role: 'Creative Developer',
-        company: 'Digital Agency X',
-        period: '2020 - 2022',
-        description: [
-            'Developed award-winning immersive websites for Fortune 500 clients.',
-            'Integrated WebGL experiences using Three.js and GSAP.',
-            'Collaborated closely with designers to bridge the gap between design and code.'
-        ]
-    },
-    {
-        role: 'Frontend Developer',
-        company: 'StartUp Y',
-        period: '2018 - 2020',
-        description: [
-            'Built the MVP for a fintech platform from scratch.',
-            'Implemented real-time data visualization features.',
-            'Mentored junior developers and established code quality standards.'
-        ]
-    }
-];
-
-// Values data
-const values = [
-    {
-        title: 'Problem Solver',
-        description: 'I thrive on tackling complex challenges and finding elegant solutions.',
-        icon: '🎯'
-    },
-    {
-        title: 'Detail Oriented',
-        description: 'Precision and quality are at the heart of everything I build.',
-        icon: '🔍'
-    },
-    {
-        title: 'Continuous Learner',
-        description: 'Always exploring new technologies and pushing boundaries.',
-        icon: '📚'
-    },
-    {
-        title: 'Collaborative Spirit',
-        description: 'Great products are built by great teams working together.',
-        icon: '🤝'
-    }
-];
-
-// Stats data
-const stats = [
-    { value: 5, label: 'Years Experience', suffix: '+' },
-    { value: 50, label: 'Projects Completed', suffix: '+' },
-    { value: 25, label: 'Technologies', suffix: '+' },
-    { value: 100, label: 'Happy Clients', suffix: '%' }
-];
 
 // Counter component for animated numbers
 function Counter({ value, suffix = '', duration = 2 }: { value: number; suffix?: string; duration?: number }) {
@@ -118,6 +52,12 @@ function Counter({ value, suffix = '', duration = 2 }: { value: number; suffix?:
 export default function AboutPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const marqueeRef = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation('about');
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     // Setup GSAP animations
     useGSAP(() => {
@@ -220,6 +160,68 @@ export default function AboutPage() {
 
     }, { scope: containerRef });
 
+    // Get translated experience data
+    const experience = [
+        {
+            role: t('page.experience.senior.role'),
+            company: t('page.experience.senior.company'),
+            period: t('page.experience.senior.period'),
+            description: t('page.experience.senior.description', { returnObjects: true }) as string[]
+        },
+        {
+            role: t('page.experience.mid.role'),
+            company: t('page.experience.mid.company'),
+            period: t('page.experience.mid.period'),
+            description: t('page.experience.mid.description', { returnObjects: true }) as string[]
+        },
+        {
+            role: t('page.experience.junior.role'),
+            company: t('page.experience.junior.company'),
+            period: t('page.experience.junior.period'),
+            description: t('page.experience.junior.description', { returnObjects: true }) as string[]
+        }
+    ];
+
+    // Get translated values data
+    const values = [
+        {
+            title: t('page.values.problemSolver.title'),
+            description: t('page.values.problemSolver.description'),
+            icon: '🎯'
+        },
+        {
+            title: t('page.values.detailOriented.title'),
+            description: t('page.values.detailOriented.description'),
+            icon: '🔍'
+        },
+        {
+            title: t('page.values.continuousLearner.title'),
+            description: t('page.values.continuousLearner.description'),
+            icon: '📚'
+        },
+        {
+            title: t('page.values.collaborative.title'),
+            description: t('page.values.collaborative.description'),
+            icon: '🤝'
+        }
+    ];
+
+    // Get translated stats data
+    const stats = [
+        { value: parseInt(t('page.statsData.experience.value')), label: t('page.statsData.experience.label'), suffix: t('page.statsData.experience.suffix') },
+        { value: parseInt(t('page.statsData.projects.value')), label: t('page.statsData.projects.label'), suffix: t('page.statsData.projects.suffix') },
+        { value: parseInt(t('page.statsData.technologies.value')), label: t('page.statsData.technologies.label'), suffix: t('page.statsData.technologies.suffix') },
+        { value: parseInt(t('page.statsData.satisfaction.value')), label: t('page.statsData.satisfaction.label'), suffix: t('page.statsData.satisfaction.suffix') }
+    ];
+
+    // Get translated traits
+    const traits = [
+        t('page.traits.creative'),
+        t('page.traits.innovative'),
+        t('page.traits.detailOriented'),
+        t('page.traits.teamPlayer')
+    ];
+
     return (
         <div ref={containerRef} className="min-h-screen w-full">
             {/* Hero Section */}
@@ -230,7 +232,7 @@ export default function AboutPage() {
                 <Parallax speed={0.1} className="text-center z-10">
                     <div className="mb-6 md:mb-8">
                         <SplitText
-                            text="About Me"
+                            text={isMounted ? t('page.heroTitle') : 'About Me'}
                             tag="h1"
                             className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight"
                             splitType="chars"
@@ -239,13 +241,13 @@ export default function AboutPage() {
                         />
                     </div>
                     <p className="text-lg md:text-xl lg:text-2xl opacity-70 max-w-2xl mx-auto font-light">
-                        Creative technologist passionate about building immersive digital experiences
+                        {isMounted ? t('page.heroSubtitle') : 'Creative technologist passionate about building immersive digital experiences'}
                     </p>
                 </Parallax>
 
                 {/* Scroll indicator */}
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-                    <span className="text-xs uppercase tracking-widest opacity-50">Scroll</span>
+                    <span className="text-xs uppercase tracking-widest opacity-50">{isMounted ? t('page.scroll') : 'Scroll'}</span>
                     <div className="w-[1px] h-16 bg-white/20 relative overflow-hidden">
                         <div className="w-full h-full bg-white/60 animate-scrollY" />
                     </div>
@@ -271,23 +273,19 @@ export default function AboutPage() {
                     <div className="order-2 lg:order-2">
                         <Parallax speed={0.05}>
                             <h2 className="profile-text text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 tracking-tight">
-                                Hi, I&apos;m Bondan Banuaji
+                                {isMounted ? t('page.profileTitle') : "Hi, I'm Bondan Banuaji"}
                             </h2>
                             <div className="profile-text text-base md:text-lg lg:text-xl opacity-80 space-y-4 md:space-y-6 leading-relaxed font-light">
                                 <p>
-                                    I&apos;m a creative technologist with a passion for building immersive digital experiences.
-                                    My journey began with a curiosity for how things work, which evolved into a career
-                                    bridging the gap between design and engineering.
+                                    {isMounted ? t('page.profileIntro') : "I'm a creative technologist with a passion for building immersive digital experiences. My journey began with a curiosity for how things work, which evolved into a career bridging the gap between design and engineering."}
                                 </p>
                                 <p>
-                                    With over 5 years of experience, I specialize in creating high-performance websites
-                                    and applications that not only look beautiful but also solve real-world problems.
-                                    I believe in the power of code to tell stories and evoke emotions.
+                                    {isMounted ? t('page.profileDescription') : "With over 5 years of experience, I specialize in creating high-performance websites and applications that not only look beautiful but also solve real-world problems. I believe in the power of code to tell stories and evoke emotions."}
                                 </p>
                             </div>
 
                             <div className="profile-text mt-8 md:mt-10 flex flex-wrap gap-3">
-                                {['Creative', 'Innovative', 'Detail-Oriented', 'Team Player'].map((trait) => (
+                                {traits.map((trait) => (
                                     <span
                                         key={trait}
                                         className="px-4 py-2 md:px-5 md:py-2.5 border border-white/10 rounded-full text-xs md:text-sm bg-white/5 hover:bg-white/10 transition-all duration-300"
@@ -303,7 +301,7 @@ export default function AboutPage() {
                                         href="/resume.pdf"
                                         className="inline-block px-8 py-4 md:px-10 md:py-5 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors text-sm md:text-base"
                                     >
-                                        Download Resume
+                                        {isMounted ? t('page.downloadResume') : 'Download Resume'}
                                     </a>
                                 </MagneticButton>
                             </div>
@@ -316,10 +314,10 @@ export default function AboutPage() {
             <section className="py-12 md:py-16 lg:py-20 overflow-hidden">
                 <div className="mb-8 md:mb-12 text-center px-4">
                     <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-4">
-                        Skills & Technologies
+                        {isMounted ? t('page.skillsTitle') : 'Skills & Technologies'}
                     </h2>
                     <p className="text-base md:text-lg lg:text-xl opacity-60 font-light">
-                        The tools I use to bring ideas to life
+                        {isMounted ? t('page.skillsSubtitle') : 'The tools I use to bring ideas to life'}
                     </p>
                 </div>
 
@@ -367,7 +365,7 @@ export default function AboutPage() {
             <section className="py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10">
                 <div className="max-w-[90vw] lg:max-w-[70vw] mx-auto">
                     <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-12 md:mb-20 lg:mb-28 text-center tracking-tight">
-                        Experience
+                        {isMounted ? t('page.experienceTitle') : 'Experience'}
                     </h2>
 
                     <div className="relative border-l-2 border-white/20 ml-2 md:ml-0 space-y-12 md:space-y-16 lg:space-y-20">
@@ -400,7 +398,7 @@ export default function AboutPage() {
             <section className="values-section py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10">
                 <div className="max-w-[90vw] lg:max-w-[80vw] mx-auto">
                     <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-12 md:mb-20 text-center tracking-tight">
-                        Core Values
+                        {isMounted ? t('page.valuesTitle') : 'Core Values'}
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
@@ -427,7 +425,7 @@ export default function AboutPage() {
             <section className="stats-section py-20 md:py-32 lg:py-40 px-4 md:px-6 relative z-10">
                 <div className="max-w-[90vw] lg:max-w-[80vw] mx-auto">
                     <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-12 md:mb-20 text-center tracking-tight">
-                        By The Numbers
+                        {isMounted ? t('page.statsTitle') : 'By The Numbers'}
                     </h2>
 
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
@@ -453,10 +451,10 @@ export default function AboutPage() {
 
                 <div className="max-w-[90vw] lg:max-w-[70vw] mx-auto text-center relative z-10">
                     <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-10 tracking-tight">
-                        Let&apos;s Build Something Amazing
+                        {isMounted ? t('page.ctaTitle') : "Let's Build Something Amazing"}
                     </h2>
                     <p className="text-base md:text-lg lg:text-2xl opacity-70 mb-10 md:mb-14 font-light max-w-2xl mx-auto">
-                        I&apos;m always excited to collaborate on new projects and innovative ideas.
+                        {isMounted ? t('page.ctaSubtitle') : "I'm always excited to collaborate on new projects and innovative ideas."}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
@@ -465,7 +463,7 @@ export default function AboutPage() {
                                 href="/contact"
                                 className="inline-block px-8 py-4 md:px-10 md:py-5 bg-white text-black rounded-full font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors text-sm md:text-base"
                             >
-                                Get In Touch
+                                {isMounted ? t('page.ctaButtons.contact') : 'Get In Touch'}
                             </Link>
                         </MagneticButton>
 
@@ -474,7 +472,7 @@ export default function AboutPage() {
                                 href="/work"
                                 className="inline-block px-8 py-4 md:px-10 md:py-5 glass rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-colors text-sm md:text-base border border-white/20"
                             >
-                                View My Work
+                                {isMounted ? t('page.ctaButtons.work') : 'View My Work'}
                             </Link>
                         </MagneticButton>
                     </div>

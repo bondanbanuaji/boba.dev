@@ -1,0 +1,29 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "work": "Work",
+        "services": "Services",
+        "contact": "Contact",
+        "menu": "Menu",
+        "close": "Close"
+    },
+    "intro": {
+        "question": "What's your name?",
+        "placeholder": "Type here...",
+        "button": "Enter",
+        "greeting": "Hello"
+    },
+    "buttons": {
+        "viewMore": "View More",
+        "learnMore": "Learn More",
+        "getInTouch": "Get in Touch",
+        "submit": "Submit",
+        "viewGithub": "View on GitHub",
+        "viewProfile": "View GitHub Profile"
+    },
+    "common": {
+        "loading": "Loading...",
+        "top": "Top"
+    }
+}

@@ -1,23 +1,20 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import Parallax from '@/components/ui/Parallax';
 import FallingText from '@/components/FallingText';
 import LogoLoop from '@/components/LogoLoop';
 import StarBorder from '@/components/StarBorder';
 import { SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs, SiLaravel, SiPhp, SiPython, SiThreedotjs, SiGreensock, SiFramer, SiTailwindcss, SiMongodb, SiMysql, SiPostgresql, SiVuedotjs, SiGit, SiGithub, SiVercel } from 'react-icons/si';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-    { number: '559+', label: 'Contributions', sublabel: 'Last Year' },
-    { number: '30+', label: 'Projects', sublabel: 'Built' },
-    { number: '5+', label: 'Tech Stacks', sublabel: 'Mastered' },
-    { number: '97%', label: 'Dedication', sublabel: 'Always' },
-];
+
 
 const techLogos = [
     { node: <SiReact className="text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
@@ -41,24 +38,44 @@ const techLogos = [
     { node: <SiVercel className="text-white" />, title: "Vercel", href: "https://vercel.com" },
 ];
 
-const hobbies = [
-    { emoji: '💻', text: 'Ngoding' },
-    { emoji: '🎵', text: 'Listening Music' },
-    { emoji: '✈️', text: 'Traveling' },
-    { emoji: '😴', text: 'Sleeping' },
-    { emoji: '🗣', text: 'yapping' },
-    { emoji: '🎮', text: 'gaming' }
-];
+
 
 export default function About() {
+    const { t } = useTranslation('about');
+    const [isMounted, setIsMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
+    const bioRef = useRef<HTMLDivElement>(null);
+    const statsRef = useRef<HTMLDivElement>(null);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const hobbiesRef = useRef<HTMLDivElement>(null);
+    const techStackRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const stats = [
+        { number: isMounted ? t('stats.contributions.number') : '559+', label: isMounted ? t('stats.contributions.label') : 'Contributions', sublabel: isMounted ? t('stats.contributions.sublabel') : 'Last Year' },
+        { number: isMounted ? t('stats.projects.number') : '30+', label: isMounted ? t('stats.projects.label') : 'Projects', sublabel: isMounted ? t('stats.projects.sublabel') : 'Built' },
+        { number: isMounted ? t('stats.techStacks.number') : '5+', label: isMounted ? t('stats.techStacks.label') : 'Tech Stacks', sublabel: isMounted ? t('stats.techStacks.sublabel') : 'Mastered' },
+        { number: isMounted ? t('stats.dedication.number') : '97%', label: isMounted ? t('stats.dedication.label') : 'Dedication', sublabel: isMounted ? t('stats.dedication.sublabel') : 'Always' },
+    ];
+
+    const hobbies = [
+        { emoji: '💻', text: isMounted ? t('hobbies.coding') : 'Ngoding' },
+        { emoji: '🎵', text: isMounted ? t('hobbies.music') : 'Listening Music' },
+        { emoji: '🛵', text: isMounted ? t('hobbies.traveling') : 'Traveling' },
+        { emoji: '😴', text: isMounted ? t('hobbies.sleeping') : 'Sleeping' },
+        { emoji: '🗣', text: isMounted ? t('hobbies.yapping') : 'yapping' },
+        { emoji: '🎮', text: isMounted ? t('hobbies.gaming') : 'gaming' }
+    ];
 
     useGSAP(() => {
         if (!containerRef.current) return;
 
         // Ensure content is visible first (fallback)
-        gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], { 
+        gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], {
             clearProps: 'all'
         });
 
@@ -223,7 +240,7 @@ export default function About() {
 
         // Immediate visibility timeout fallback
         setTimeout(() => {
-            gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], { 
+            gsap.set(['.about-paragraph', '.stat-card', '.skill-badge', '.hobby-item', '.profile-card'], {
                 opacity: 1,
                 clearProps: 'transform'
             });
@@ -245,15 +262,15 @@ export default function About() {
                     <Parallax speed={-0.03}>
                         <div className="mb-6">
                             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/50 font-semibold">
-                                Get To Know
+                                {isMounted ? t('section.subtitle') : 'Get To Know'}
                             </span>
                         </div>
-                        <h2 
+                        <h2
                             ref={titleRef}
                             className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-none"
                             style={{ perspective: '1000px' }}
                         >
-                            About Me
+                            {isMounted ? t('section.title') : 'About Me'}
                         </h2>
                     </Parallax>
                 </div>
@@ -265,24 +282,19 @@ export default function About() {
                         <Parallax speed={0.02}>
                             <div className="about-paragraph space-y-6">
                                 <p className="text-lg md:text-xl lg:text-2xl opacity-80 leading-relaxed font-light">
-                                    Hi! I&apos;m <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Bondan Banuaji</span>, also known as <span className="font-semibold">Boba</span>
+                                    {isMounted ? t('bio.greeting') : "Hi! I'm"} <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">{isMounted ? t('bio.name') : "Bondan Banuaji"}</span>
                                 </p>
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    I&apos;m an <span className="text-white/90 font-medium">Informatics Engineering student</span> from Karawang, Indonesia, 
-                                    passionate about experimenting with anything tech-related. From building modern web applications 
-                                    to tinkering with AI and creating immersive digital experiences.
+                                    {isMounted ? t('bio.intro') : "I'm an Informatics Engineering student from Karawang, Indonesia, passionate about experimenting with anything tech-related. From building modern web applications to tinkering with AI and creating immersive digital experiences."}
                                 </p>
                             </div>
 
                             <div className="about-paragraph space-y-6 pt-6">
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    My philosophy is simple: <span className="italic text-white/90">&ldquo;never stop learning&rdquo;</span>. 
-                                    I&apos;m constantly exploring new technologies, pushing boundaries with creative development, 
-                                    and building projects that solve real-world problems.
+                                    {isMounted ? t('bio.philosophy') : "My philosophy is simple:"} <span className="italic text-white/90">&ldquo;{isMounted ? t('bio.quote') : "never stop learning"}&rdquo;</span>. {isMounted ? t('bio.description1') : "I'm constantly exploring new technologies, pushing boundaries with creative development, and building projects that solve real-world problems."}
                                 </p>
                                 <p className="text-base md:text-lg opacity-70 leading-relaxed">
-                                    When I&apos;m not coding, you&apos;ll find me contributing to open-source projects, 
-                                    learning new frameworks, or experimenting with AI and 3D web experiences.
+                                    {isMounted ? t('bio.description2') : "Whenever I have some free time, I usually end up learning a new framework or experimenting with AI and view web experiences."}
                                 </p>
                             </div>
                         </Parallax>
@@ -290,7 +302,7 @@ export default function About() {
                         {/* Hobbies */}
                         <Parallax speed={0.03}>
                             <div className="pt-8">
-                                <h3 className="flex justify-center md:justify-start text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-6 md:mb-8 text-white/90">Hobbies</h3>
+                                <h3 className="flex justify-center md:justify-start text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-6 md:mb-8 text-white/90">{isMounted ? t('hobbies.title') : "Hobbies"}</h3>
                                 <div className="h-[80px] sm:h-[100px] md:h-[120px] lg:h-[140px] xl:h-[160px] 2xl:h-[180px] relative">
                                     <FallingText
                                         text={`${hobbies.map(h => `${h.emoji} ${h.text}`).join(' ')}`}
@@ -302,7 +314,7 @@ export default function About() {
                                         gravity={0.56}
                                         fontSize="clamp(0.875rem, 2vw, 1.125rem)"
                                         mouseConstraintStiffness={0.9}
-                                        className="w-full h-full gap-2 flex"
+                                        className="w-full h-full gap-2 flex flex-col"
                                     />
                                 </div>
                             </div>
@@ -313,9 +325,9 @@ export default function About() {
                     <Parallax speed={0.05}>
                         <div className="profile-card relative group h-full">
                             <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/30 transition-all duration-500 h-full">
-                                
-                                <img 
-                                    src="https://avatars.githubusercontent.com/bondanbanuaji" 
+
+                                <img
+                                    src="https://avatars.githubusercontent.com/bondanbanuaji"
                                     alt="Bondan Banuaji"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
@@ -356,7 +368,7 @@ export default function About() {
                 <Parallax speed={0.02}>
                     <div className="skills-container">
                         <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-center">
-                            Tech Stack & Tools
+                            {isMounted ? t('skills.title') : "Tech Stack & Tools"}
                         </h3>
                         <div className="h-[140px] sm:h-[160px] md:h-[180px] lg:h-[200px] xl:h-[220px] relative overflow-hidden rounded-xl backdrop-blur-sm flex items-center">
                             <LogoLoop

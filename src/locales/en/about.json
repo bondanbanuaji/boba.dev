@@ -1,0 +1,155 @@
+{
+    "section": {
+        "subtitle": "Get To Know",
+        "title": "About Me"
+    },
+    "bio": {
+        "greeting": "Hi! I'm",
+        "name": "Bondan Banuaji",
+        "nickname": "Boba",
+        "intro": "I'm an Informatics Engineering student from Karawang, Indonesia, passionate about experimenting with anything tech-related. From building modern web applications to tinkering with AI and creating immersive digital experiences.",
+        "philosophy": "My philosophy is simple:",
+        "quote": "never stop learning",
+        "description1": "I'm constantly exploring new technologies, pushing boundaries with creative development, and building projects that solve real-world problems.",
+        "description2": "Whenever I have some free time, I usually end up learning a new framework or experimenting with AI and view web experiences."
+    },
+    "stats": {
+        "contributions": {
+            "number": "559+",
+            "label": "Contributions",
+            "sublabel": "Last Year"
+        },
+        "projects": {
+            "number": "30+",
+            "label": "Projects",
+            "sublabel": "Built"
+        },
+        "techStacks": {
+            "number": "5+",
+            "label": "Tech Stacks",
+            "sublabel": "Mastered"
+        },
+        "dedication": {
+            "number": "97%",
+            "label": "Dedication",
+            "sublabel": "Always"
+        }
+    },
+    "hobbies": {
+        "title": "Hobbies",
+        "coding": "Ngoding",
+        "music": "Listening Music",
+        "traveling": "Traveling",
+        "sleeping": "Sleeping",
+        "yapping": "yapping",
+        "gaming": "gaming"
+    },
+    "skills": {
+        "title": "Tech Stack & Tools"
+    },
+    "page": {
+        "heroTitle": "About Me",
+        "heroSubtitle": "Creative technologist passionate about building immersive digital experiences",
+        "scroll": "Scroll",
+        "profileTitle": "Hi, I'm Bondan Banuaji",
+        "profileIntro": "I'm a creative technologist with a passion for building immersive digital experiences. My journey began with a curiosity for how things work, which evolved into a career bridging the gap between design and engineering.",
+        "profileDescription": "With over 5 years of experience, I specialize in creating high-performance websites and applications that not only look beautiful but also solve real-world problems. I believe in the power of code to tell stories and evoke emotions.",
+        "traits": {
+            "creative": "Creative",
+            "innovative": "Innovative",
+            "detailOriented": "Detail-Oriented",
+            "teamPlayer": "Team Player"
+        },
+        "downloadResume": "Download Resume",
+        "skillsTitle": "Skills & Technologies",
+        "skillsSubtitle": "The tools I use to bring ideas to life",
+        "skillCategories": {
+            "frontend": "frontend",
+            "backend": "backend",
+            "devOps": "devOps",
+            "designTools": "designTools",
+            "testing": "testing"
+        },
+        "experienceTitle": "Experience",
+        "valuesTitle": "Core Values",
+        "values": {
+            "problemSolver": {
+                "title": "Problem Solver",
+                "description": "I thrive on tackling complex challenges and finding elegant solutions."
+            },
+            "detailOriented": {
+                "title": "Detail Oriented",
+                "description": "Precision and quality are at the heart of everything I build."
+            },
+            "continuousLearner": {
+                "title": "Continuous Learner",
+                "description": "Always exploring new technologies and pushing boundaries."
+            },
+            "collaborative": {
+                "title": "Collaborative Spirit",
+                "description": "Great products are built by great teams working together."
+            }
+        },
+        "statsTitle": "By The Numbers",
+        "statsData": {
+            "experience": {
+                "value": "5",
+                "suffix": "+",
+                "label": "Years Experience"
+            },
+            "projects": {
+                "value": "50",
+                "suffix": "+",
+                "label": "Projects Completed"
+            },
+            "technologies": {
+                "value": "25",
+                "suffix": "+",
+                "label": "Technologies"
+            },
+            "satisfaction": {
+                "value": "100",
+                "suffix": "%",
+                "label": "Happy Clients"
+            }
+        },
+        "ctaTitle": "Let's Build Something Amazing",
+        "ctaSubtitle": "I'm always excited to collaborate on new projects and innovative ideas.",
+        "ctaButtons": {
+            "contact": "Get In Touch",
+            "work": "View My Work"
+        },
+        "experience": {
+            "senior": {
+                "role": "Senior Frontend Developer",
+                "company": "TechCorp Inc.",
+                "period": "2022 - Present",
+                "description": [
+                    "Led a team of 5 developers in rebuilding the core product dashboard.",
+                    "Improved application performance by 60% through code splitting and optimization.",
+                    "Implemented a comprehensive design system using React and Tailwind CSS."
+                ]
+            },
+            "mid": {
+                "role": "Frontend Developer",
+                "company": "Digital Agency X",
+                "period": "2020 - 2022",
+                "description": [
+                    "Developed award-winning immersive websites for Fortune 500 clients.",
+                    "Integrated WebGL experiences using Three.js and GSAP.",
+                    "Collaborated closely with designers to bridge the gap between design and code."
+                ]
+            },
+            "junior": {
+                "role": "Frontend Developer",
+                "company": "StartUp Y",
+                "period": "2018 - 2020",
+                "description": [
+                    "Built the MVP for a fintech platform from scratch.",
+                    "Implemented real-time data visualization features.",
+                    "Mentored junior developers and established code quality standards."
+                ]
+            }
+        }
+    }
+}

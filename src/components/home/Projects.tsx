@@ -1,21 +1,29 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExternalLink, Star, GitFork } from 'lucide-react';
 import Parallax from '@/components/ui/Parallax';
 import { type PinnedRepo } from '@/lib/github';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
+    const { t, i18n } = useTranslation(['projects', 'projectDescriptions']);
+    const [isMounted, setIsMounted] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const [projects, setProjects] = useState<PinnedRepo[]>([]);
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         async function fetchProjects() {
@@ -35,6 +43,24 @@ export default function Projects() {
 
         fetchProjects();
     }, []);
+
+    // Memoize translated projects to prevent unnecessary re-calculations
+    const translatedProjects = useMemo(() => {
+        return projects.map(project => {
+            const translationKey = project.id;
+            const hasTranslation = i18n.exists(`projectDescriptions:${translationKey}.title`);
+
+            if (hasTranslation) {
+                return {
+                    ...project,
+                    title: t(`projectDescriptions:${translationKey}.title`, { defaultValue: project.title }),
+                    description: t(`projectDescriptions:${translationKey}.description`, { defaultValue: project.description })
+                };
+            }
+
+            return project;
+        });
+    }, [projects, i18n.language, t]);
 
     useGSAP(() => {
         if (loading || projects.length === 0) return;
@@ -63,7 +89,7 @@ export default function Projects() {
                 <div className="max-w-[90vw] mx-auto">
                     <div className="text-center">
                         <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div>
-                        <p className="mt-4 text-white/50">Loading projects...</p>
+                        <p className="mt-4 text-white/50">{isMounted ? t('loading') : 'Loading projects...'}</p>
                     </div>
                 </div>
             </section>
@@ -75,9 +101,9 @@ export default function Projects() {
             <div className="max-w-[90vw] mx-auto">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 lg:mb-32 gap-6">
                     <div>
-                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 tracking-tight">Work Projects</h2>
+                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 tracking-tight">{isMounted ? t('section.title') : 'Work Projects'}</h2>
                         <p className="text-lg md:text-xl lg:text-2xl opacity-60 max-w-xl">
-                            A collection of my featured open-source projects from GitHub.
+                            {isMounted ? t('section.description') : 'A collection of my featured open-source projects from GitHub.'}
                         </p>
                     </div>
                     <a
@@ -92,7 +118,7 @@ export default function Projects() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-x-12 md:gap-y-24 lg:gap-x-20 lg:gap-y-32">
-                    {projects.map((project, index) => (
+                    {translatedProjects.map((project, index) => (
                         <div
                             key={project.id}
                             className={`project-card group relative ${index % 2 === 1 ? 'md:mt-20 lg:mt-32' : ''}`}
@@ -169,7 +195,7 @@ export default function Projects() {
                                             rel="noopener noreferrer"
                                             className="text-sm opacity-50 hover:opacity-100 transition-opacity flex items-center gap-1"
                                         >
-                                            View on GitHub
+                                            {isMounted ? t('viewOnGithub') : 'View on GitHub'}
                                             <ExternalLink className="w-3 h-3" />
                                         </a>
                                     </div>

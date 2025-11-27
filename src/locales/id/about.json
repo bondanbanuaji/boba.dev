@@ -1,0 +1,155 @@
+{
+    "section": {
+        "subtitle": "Kenali Lebih Dekat",
+        "title": "Tentang Saya"
+    },
+    "bio": {
+        "greeting": "Halo! Saya",
+        "name": "Bondan Banuaji",
+        "nickname": "Boba",
+        "intro": "Saya mahasiswa Teknik Informatika dari Karawang, Indonesia, yang passionate dengan segala hal yang berbau teknologi. Mulai dari membangun aplikasi web modern, bereksperimen dengan AI, hingga menciptakan pengalaman digital yang imersif.",
+        "philosophy": "Filosofi saya sederhana:",
+        "quote": "tidak pernah berhenti belajar",
+        "description1": "Saya terus mengeksplorasi teknologi baru, mendorong batasan dengan pengembangan kreatif, dan membangun proyek yang menyelesaikan masalah nyata.",
+        "description2": "Ketika tidak sedang ngoding, Anda akan menemukan saya berkontribusi pada proyek open-source, mempelajari framework baru, atau bereksperimen dengan AI dan pengalaman web 3D."
+    },
+    "stats": {
+        "contributions": {
+            "number": "559+",
+            "label": "Kontribusi",
+            "sublabel": "Tahun Lalu"
+        },
+        "projects": {
+            "number": "30+",
+            "label": "Proyek",
+            "sublabel": "Terbangun"
+        },
+        "techStacks": {
+            "number": "5+",
+            "label": "Tech Stack",
+            "sublabel": "Dikuasai"
+        },
+        "dedication": {
+            "number": "97%",
+            "label": "Dedikasi",
+            "sublabel": "Selalu"
+        }
+    },
+    "hobbies": {
+        "title": "Hobi",
+        "coding": "Ngoding",
+        "music": "Dengerin Musik",
+        "traveling": "Traveling",
+        "sleeping": "Tidur",
+        "yapping": "yapping",
+        "gaming": "gaming"
+    },
+    "skills": {
+        "title": "Tech Stack & Alat"
+    },
+    "page": {
+        "heroTitle": "Tentang Saya",
+        "heroSubtitle": "Teknolog kreatif yang passionate dalam membangun pengalaman digital yang imersif",
+        "scroll": "Gulir",
+        "profileTitle": "Halo, Saya Bondan Banuaji",
+        "profileIntro": "Saya adalah teknolog kreatif dengan passion dalam membangun pengalaman digital yang imersif. Perjalanan saya dimulai dengan rasa ingin tahu tentang bagaimana segala sesuatu bekerja, yang berkembang menjadi karier yang menjembatani kesenjangan antara desain dan teknik.",
+        "profileDescription": "Dengan pengalaman lebih dari 5 tahun, saya berspesialisasi dalam membuat website dan aplikasi berkinerja tinggi yang tidak hanya terlihat indah tetapi juga menyelesaikan masalah dunia nyata. Saya percaya pada kekuatan kode untuk menceritakan kisah dan membangkitkan emosi.",
+        "traits": {
+            "creative": "Kreatif",
+            "innovative": "Inovatif",
+            "detailOriented": "Berorientasi Detail",
+            "teamPlayer": "Pemain Tim"
+        },
+        "downloadResume": "Unduh Resume",
+        "skillsTitle": "Keterampilan & Teknologi",
+        "skillsSubtitle": "Alat yang saya gunakan untuk mewujudkan ide",
+        "skillCategories": {
+            "frontend": "frontend",
+            "backend": "backend",
+            "devOps": "devOps",
+            "designTools": "alat desain",
+            "testing": "pengujian"
+        },
+        "experienceTitle": "Pengalaman",
+        "valuesTitle": "Nilai Inti",
+        "values": {
+            "problemSolver": {
+                "title": "Pemecah Masalah",
+                "description": "Saya berkembang dengan menangani tantangan kompleks dan menemukan solusi yang elegan."
+            },
+            "detailOriented": {
+                "title": "Berorientasi Detail",
+                "description": "Presisi dan kualitas adalah inti dari segala yang saya bangun."
+            },
+            "continuousLearner": {
+                "title": "Pembelajar Berkelanjutan",
+                "description": "Selalu menjelajahi teknologi baru dan mendorong batasan."
+            },
+            "collaborative": {
+                "title": "Semangat Kolaboratif",
+                "description": "Produk hebat dibangun oleh tim hebat yang bekerja bersama."
+            }
+        },
+        "statsTitle": "Berdasarkan Angka",
+        "statsData": {
+            "experience": {
+                "value": "5",
+                "suffix": "+",
+                "label": "Tahun Pengalaman"
+            },
+            "projects": {
+                "value": "50",
+                "suffix": "+",
+                "label": "Proyek Selesai"
+            },
+            "technologies": {
+                "value": "25",
+                "suffix": "+",
+                "label": "Teknologi"
+            },
+            "satisfaction": {
+                "value": "100",
+                "suffix": "%",
+                "label": "Klien Puas"
+            }
+        },
+        "ctaTitle": "Mari Bangun Sesuatu yang Luar Biasa",
+        "ctaSubtitle": "Saya selalu bersemangat untuk berkolaborasi pada proyek dan ide inovatif baru.",
+        "ctaButtons": {
+            "contact": "Hubungi Saya",
+            "work": "Lihat Karya Saya"
+        },
+        "experience": {
+            "senior": {
+                "role": "Senior Frontend Developer",
+                "company": "TechCorp Inc.",
+                "period": "2022 - Sekarang",
+                "description": [
+                    "Memimpin tim yang terdiri dari 5 developer dalam membangun kembali dashboard produk inti.",
+                    "Meningkatkan performa aplikasi sebesar 60% melalui pemisahan kode dan optimasi.",
+                    "Mengimplementasikan sistem desain komprehensif menggunakan React dan Tailwind CSS."
+                ]
+            },
+            "mid": {
+                "role": "Frontend Developer",
+                "company": "Digital Agency X",
+                "period": "2020 - 2022",
+                "description": [
+                    "Mengembangkan website imersif pemenang penghargaan untuk klien Fortune 500.",
+                    "Mengintegrasikan pengalaman WebGL menggunakan Three.js dan GSAP.",
+                    "Berkolaborasi erat dengan desainer untuk menjembatani kesenjangan antara desain dan kode."
+                ]
+            },
+            "junior": {
+                "role": "Frontend Developer",
+                "company": "StartUp Y",
+                "period": "2018 - 2020",
+                "description": [
+                    "Membangun MVP untuk platform fintech dari awal.",
+                    "Mengimplementasikan fitur visualisasi data real-time.",
+                    "Membimbing developer junior dan menetapkan standar kualitas kode."
+                ]
+            }
+        }
+    }
+}

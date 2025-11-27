@@ -1,15 +1,23 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { Canvas } from '@react-three/fiber';
+import { useTranslation } from 'react-i18next';
+import { View } from '@react-three/drei';
 import TextPressure from '@/components/ui/TextPressure';
 import Parallax from '@/components/ui/Parallax';
 import Cat3D from '@/components/canvas/Cat3D';
+import '@/lib/i18n';
 
 export default function Hero() {
+    const { t } = useTranslation('hero');
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useGSAP(() => {
         const tl = gsap.timeline({ delay: 0.5 });
@@ -33,7 +41,6 @@ export default function Hero() {
                 ease: 'power3.out'
             }, '-=0.6');
 
-        // Marquee Animation
         const marqueeTl = gsap.timeline();
 
         marqueeTl.to('.hero-title-wrapper', {
@@ -49,22 +56,19 @@ export default function Hero() {
         <section
             id="home"
             ref={containerRef}
-            className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-6 pt-16 sm:pt-20 md:pt-28 lg:pt-36"
-            style={{ overflowX: 'clip', overflowY: 'visible' }}
+            className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 md:px-6 pt-16 sm:pt-20 md:pt-28 lg:pt-36 overflow-x-clip"
         >
             <div className="relative z-10 w-full flex flex-col items-center">
                 <Parallax speed={-0.1} className="mb-6 lg:mb-10">
-                    <h2 className="hero-subtitle text-sm md:text-xl lg:text-2xl font-light tracking-[0.3em] uppercase text-white/70 mb-4">
-                        PORTFOLIO | WEB DEVELOPER
-                    </h2>
+                    <h1 className="hero-subtitle text-sm md:text-xl lg:text-2xl font-light tracking-[0.3em] uppercase text-white/70 mb-4">
+                        {isMounted ? t('subtitle') : 'Bondan Banuaji (Boba) - Full Stack Developer Portfolio | Creative Technologist from Karawang, Indonesia'}
+                    </h1>
                 </Parallax>
 
                 <div
-                    className="hero-title-container w-full mb-0 mask-linear-fade"
-                    style={{ overflowX: 'clip', overflowY: 'visible' }}
+                    className="hero-title-container w-full mb-0 mask-linear-fade overflow-x-clip"
                 >
                     <div className="hero-title-wrapper flex whitespace-nowrap w-max">
-                        {/* Three copies for seamless loop */}
                         {[...Array(4)].map((_, i) => (
                             <div
                                 key={i}
@@ -88,26 +92,21 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Interactive 3D Cat */}
-                <div
-                    className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] relative z-20 -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-32 mb-2 pointer-events-none"
+                <View
+                    className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] relative z-20 -mt-10 sm:-mt-16 md:-mt-20 lg:-mt-32 mb-2 pointer-events-auto"
                     style={{ touchAction: 'pan-y' }}
                 >
-                    <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-                        <Cat3D />
-                    </Canvas>
-                </div>
+                    <Cat3D />
+                </View>
 
                 <div className="scroll-indicator mt-2 flex flex-col items-center gap-2 sm:gap-3 md:gap-4 opacity-50 pointer-events-none">
                     <span className="text-[10px] sm:text-xs md:text-sm lg:text-base uppercase tracking-widest">
-                        {/* Tampil di Mobile & Tablet (Hilang saat layar Besar/Desktop) */}
                         <span className="lg:hidden">
-                            Tap and swipe down
+                            {isMounted ? t('scroll.mobile') : 'Tap and swipe down'}
                         </span>
 
-                        {/* Tampil di Desktop (Hilang saat layar Kecil/Mobile) */}
                         <span className="hidden lg:inline">
-                            Scroll Mouse
+                            {isMounted ? t('scroll.desktop') : 'Scroll Mouse'}
                         </span>
                     </span>
                     <div className="relative w-[1px] h-10 sm:h-12 md:h-16 lg:h-20 xl:h-24" style={{ overflow: 'hidden' }}>

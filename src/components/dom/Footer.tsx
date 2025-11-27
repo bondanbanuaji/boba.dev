@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram, faLinkedin, faGithub, faTelegram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -11,13 +12,29 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { useLenis } from '@/components/layout/SmoothScroll';
+import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
+    const { t } = useTranslation(['footer', 'common']);
     const currentYear = new Date().getFullYear();
     const lenis = useLenis();
     const footerRef = useRef<HTMLElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
+
+    // Prevent hydration mismatch
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const navLinks = [
+        { name: isMounted ? t('common:nav.home') : 'Home', href: '#home' },
+        { name: isMounted ? t('common:nav.about') : 'About', href: '#about' },
+        { name: isMounted ? t('common:nav.work') : 'Work', href: '#work' },
+        { name: isMounted ? t('common:nav.services') : 'Services', href: '#services' },
+        { name: isMounted ? t('common:nav.contact') : 'Contact', href: '#contact' },
+    ];
 
     const socialLinks = [
         { icon: faTwitter, href: 'https://x.com/jwcfrey', label: 'Twitter' },
@@ -37,7 +54,7 @@ export default function Footer() {
         e.preventDefault();
         const targetId = href.replace('#', '');
         const targetElement = document.getElementById(targetId);
-        
+
         if (targetElement && lenis) {
             lenis.scrollTo(targetElement, {
                 offset: 0,
@@ -51,7 +68,7 @@ export default function Footer() {
         if (!footerRef.current) return;
 
         // Ensure content is visible first (fallback)
-        gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], { 
+        gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], {
             clearProps: 'all'
         });
 
@@ -128,7 +145,7 @@ export default function Footer() {
 
         // Immediate visibility timeout fallback
         setTimeout(() => {
-            gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], { 
+            gsap.set(['.go-top-indicator', '.footer-content', '.social-icon', '.sitemap-link'], {
                 opacity: 1,
                 clearProps: 'transform'
             });
@@ -147,7 +164,7 @@ export default function Footer() {
                     <div className="absolute inset-0 bg-white animate-scrollY"></div>
                 </div>
                 <span className="text-[11px] font-semibold tracking-widest uppercase rotate-90 origin-center translate-y-2 text-white group-hover:opacity-70 transition-opacity">
-                    Top
+                    {isMounted ? t('footer:top') : 'Top'}
                 </span>
             </div>
 
@@ -186,13 +203,7 @@ export default function Footer() {
                     {/* Right Side: Sitemap */}
                     <div className="md:text-right">
                         <ul className="space-y-4 flex flex-col md:items-end">
-                            {[
-                                { name: 'Home', href: '#home' },
-                                { name: 'About', href: '#about' },
-                                { name: 'Work', href: '#work' },
-                                { name: 'Services', href: '#services' },
-                                { name: 'Contact', href: '#contact' }
-                            ].map((item) => (
+                            {navLinks.map((item) => (
                                 <li key={item.name} className="sitemap-link">
                                     <a
                                         href={item.href}
@@ -209,7 +220,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="footer-content flex flex-col md:flex-row justify-start items-start pt-8 text-[8px] text-black/50 tracking-widest gap-4 md:gap-0 uppercase border-t border-black/10">
-                    <p>&copy; {currentYear} Boba.dev. All Rights Reserved.</p>
+                    <p>&copy; {isMounted ? t('footer:copyright', { year: currentYear }) : `2025 Boba.dev. All Rights Reserved.`}</p>
                 </div>
             </div>
         </footer>

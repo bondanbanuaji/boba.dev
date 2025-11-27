@@ -43,6 +43,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
     const mouseRef = useRef({ x: 0, y: 0 });
     const cursorRef = useRef({ x: 0, y: 0 });
+    const isVisibleRef = useRef(true);
 
     const [fontSize, setFontSize] = useState(minFontSize);
     const [scaleY, setScaleY] = useState(1);
@@ -78,9 +79,25 @@ const TextPressure: React.FC<TextPressureProps> = ({
             cursorRef.current.y = mouseRef.current.y;
         }
 
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    isVisibleRef.current = entry.isIntersecting;
+                });
+            },
+            { threshold: 0, rootMargin: '50px' }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('touchmove', handleTouchMove);
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
         };
     }, []);
 
@@ -117,6 +134,11 @@ const TextPressure: React.FC<TextPressureProps> = ({
     useEffect(() => {
         let rafId: number;
         const animate = () => {
+            if (!isVisibleRef.current) {
+                rafId = requestAnimationFrame(animate);
+                return;
+            }
+
             mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
             mouseRef.current.y += (cursorRef.current.y - mouseRef.current.y) / 15;
 

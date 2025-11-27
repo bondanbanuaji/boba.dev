@@ -1,0 +1,34 @@
+{
+    "section": {
+        "subtitle": "What I Offer",
+        "title": "Services",
+        "description": "Transforming ideas into exceptional digital experiences with precision, creativity, and technical excellence."
+    },
+    "services": [
+        {
+            "title": "Web Development",
+            "description": "Crafting high-performance, scalable web applications with cutting-edge technologies. From responsive websites to complex web platforms, delivering seamless user experiences."
+        },
+        {
+            "title": "Frontend Development",
+            "description": "Pushing boundaries with immersive 3D experiences and interactive animations. Bringing designs to life with WebGL, Three.js, and advanced motion graphics."
+        },
+        {
+            "title": "UI/UX Design",
+            "description": "Designing intuitive, user-centered interfaces that blend aesthetics with functionality. Creating memorable digital experiences that users love."
+        },
+        {
+            "title": "Full-Stack Development",
+            "description": "Building end-to-end solutions with modern backend architectures and databases. Seamlessly integrating frontend and backend for robust applications."
+        },
+        {
+            "title": "Performance Optimization",
+            "description": "Optimizing web performance for lightning-fast load times and smooth interactions. Implementing best practices for SEO, Core Web Vitals, and accessibility."
+        },
+        {
+            "title": "Technical Consulting",
+            "description": "Providing strategic technical guidance for digital transformation. Architecture planning, technology stack selection, and scalability solutions."
+        }
+    ],
+    "cta": "Ready to bring your vision to life?"
+}

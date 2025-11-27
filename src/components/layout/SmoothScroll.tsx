@@ -15,15 +15,18 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     const [lenis, setLenis] = useState<Lenis | null>(null);
 
     useEffect(() => {
+        const isMobile = window.innerWidth <= 768;
+        
         const lenisInstance = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
-            smoothWheel: true,
+            smoothWheel: !isMobile,
+            touchMultiplier: isMobile ? 0 : 2,
+            infinite: false,
         });
 
-        // Use requestAnimationFrame to defer setState
         requestAnimationFrame(() => {
             setLenis(lenisInstance);
         });

@@ -1,12 +1,19 @@
 {
-    "name": "Boba.dev - Creative Technologist",
+    "name": "Bondan Banuaji (Boba) - Full Stack Developer & Creative Technologist Portfolio",
     "short_name": "Boba.dev",
-    "description": "Portfolio of Bondan Banuaji, a Creative Technologist specializing in 3D, Web, and Interactive Experiences.",
+    "description": "Portfolio of Bondan Banuaji (Boba/Banu) from Karawang, Indonesia. Full Stack Developer & Creative Technologist specializing in modern web development, 3D web experiences, interactive design using React, Next.js, Three.js, and GSAP. View innovative digital projects and creative technology solutions.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
     "orientation": "portrait",
+    "lang": "en",
+    "dir": "ltr",
+    "scope": "/",
+    "categories": ["portfolio", "developer", "technology", "web development", "creative"],
+    "screenshots": [],
+    "related_applications": [],
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
