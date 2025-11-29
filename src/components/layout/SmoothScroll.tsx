@@ -30,12 +30,12 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         document.documentElement.classList.add('lenis');
 
         const lenisInstance = new Lenis({
-            duration: 1.5,
+            duration: 1.6,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 0.7,
+            wheelMultiplier: 0.6,
             touchMultiplier: 1.5,
             infinite: false,
         });

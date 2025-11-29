@@ -6,7 +6,6 @@ export default function CustomCursor() {
     const cursorRef = useRef<HTMLDivElement>(null);
     const followerRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
-    const [isInverse, setIsInverse] = useState(false);
 
     useEffect(() => {
         const cursor = cursorRef.current;
@@ -28,7 +27,6 @@ export default function CustomCursor() {
 
             let target = elementAtPoint;
             let isHoverable = false;
-            let isInverseZone = false;
 
             while (target && target !== document.body) {
                 if (
@@ -37,13 +35,8 @@ export default function CustomCursor() {
                     target.classList.contains('hoverable')
                 ) {
                     isHoverable = true;
+                    break;
                 }
-
-                if (target.getAttribute('data-cursor-inverse') === 'true') {
-                    isInverseZone = true;
-                }
-
-                if (isHoverable && isInverseZone) break; // Optimization: stop if both found
 
                 target = target.parentElement as HTMLElement;
             }
@@ -55,16 +48,14 @@ export default function CustomCursor() {
                 hoveringElement = null;
                 setIsHovering(false);
             }
-
-            setIsInverse(isInverseZone);
         };
 
         const animate = () => {
             cursorPos.x = mouse.x;
             cursorPos.y = mouse.y;
 
-            followerPos.x += (cursorPos.x - followerPos.x) * 0.1;
-            followerPos.y += (cursorPos.y - followerPos.y) * 0.15;
+            followerPos.x += (cursorPos.x - followerPos.x) * 0.08;
+            followerPos.y += (cursorPos.y - followerPos.y) * 0.08;
 
             cursor.style.transform = `translate3d(calc(${cursorPos.x}px - 50%), calc(${cursorPos.y}px - 50%), 0)`;
 
@@ -87,20 +78,15 @@ export default function CustomCursor() {
         <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">
             <div
                 ref={cursorRef}
-                className={`fixed top-0 left-0 w-3 h-3 rounded-full transition-all duration-300 ease-out ${isInverse
-                    ? 'bg-black mix-blend-normal'
-                    : 'bg-white mix-blend-difference'
-                    } ${isHovering ? 'w-5 h-5 border-0' : 'w-3 h-3'}`}
+                className={`fixed top-0 left-0 rounded-full bg-white mix-blend-difference transition-all duration-300 ease-out will-change-transform ${
+                    isHovering ? 'w-5 h-5' : 'w-3 h-3'
+                }`}
             />
             <div
                 ref={followerRef}
-                className={`fixed top-0 left-0 rounded-full border transition-all duration-300 ease-out ${isInverse
-                    ? 'border-black mix-blend-normal'
-                    : 'border-white mix-blend-difference'
-                    } ${isHovering
-                        ? `w-2 h-2 ${isInverse ? 'bg-black' : 'bg-white'}`
-                        : 'w-20 h-20'
-                    }`}
+                className={`fixed top-0 left-0 rounded-full border border-white mix-blend-difference transition-all duration-300 ease-out will-change-transform ${
+                    isHovering ? 'w-2 h-2 bg-white' : 'w-20 h-20'
+                }`}
             />
         </div>
     );
