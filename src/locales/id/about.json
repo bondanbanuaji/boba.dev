@@ -7,11 +7,11 @@
         "greeting": "Halo! Saya",
         "name": "Bondan Banuaji",
         "nickname": "Boba",
-        "intro": "Saya mahasiswa Teknik Informatika dari Karawang, Indonesia, yang passionate dengan segala hal yang berbau teknologi. Mulai dari membangun aplikasi web modern, bereksperimen dengan AI, hingga menciptakan pengalaman digital yang imersif.",
-        "philosophy": "Filosofi saya sederhana:",
-        "quote": "tidak pernah berhenti belajar",
-        "description1": "Saya terus mengeksplorasi teknologi baru, mendorong batasan dengan pengembangan kreatif, dan membangun proyek yang menyelesaikan masalah nyata.",
-        "description2": "Ketika tidak sedang ngoding, Anda akan menemukan saya berkontribusi pada proyek open-source, mempelajari framework baru, atau bereksperimen dengan AI dan pengalaman web 3D."
+        "intro": "Saya mahasiswa Teknik Informatika dari Karawang yang passionate banget sama teknologi. Mulai dari bikin web apps yang banger, eksperimen sama AI, sampe nyiptain pengalaman digital yang vibes-nya keren.",
+        "philosophy": "Filosofi saya simpel:",
+        "quote": "never stop learning",
+        "description1": "Saya terus explore teknologi baru, push boundaries lewat development yang kreatif, dan bikin project yang solve masalah nyata.",
+        "description2": "Kalo lagi gak ngoding, anda bakal nemuin saya lagi kontribusi ke project open-source, belajar framework baru, atau eksperimen sama AI dan web 3D."
     },
     "stats": {
         "contributions": {
@@ -22,7 +22,7 @@
         "projects": {
             "number": "30+",
             "label": "Proyek",
-            "sublabel": "Terbangun"
+            "sublabel": "Dibuild"
         },
         "techStacks": {
             "number": "5+",
@@ -32,7 +32,7 @@
         "dedication": {
             "number": "97%",
             "label": "Dedikasi",
-            "sublabel": "Selalu"
+            "sublabel": "Always"
         }
     },
     "hobbies": {
@@ -41,53 +41,53 @@
         "music": "Dengerin Musik",
         "traveling": "Traveling",
         "sleeping": "Tidur",
-        "yapping": "yapping",
-        "gaming": "gaming"
+        "yapping": "Yapping",
+        "gaming": "Gaming"
     },
     "skills": {
-        "title": "Tech Stack & Alat"
+        "title": "Tech Stack & Tools"
     },
     "page": {
         "heroTitle": "Tentang Saya",
-        "heroSubtitle": "Teknolog kreatif yang passionate dalam membangun pengalaman digital yang imersif",
-        "scroll": "Gulir",
+        "heroSubtitle": "Creative technologist yang passionate bikin pengalaman digital yang immersive",
+        "scroll": "Scroll",
         "profileTitle": "Halo, Saya Bondan Banuaji",
-        "profileIntro": "Saya adalah teknolog kreatif dengan passion dalam membangun pengalaman digital yang imersif. Perjalanan saya dimulai dengan rasa ingin tahu tentang bagaimana segala sesuatu bekerja, yang berkembang menjadi karier yang menjembatani kesenjangan antara desain dan teknik.",
-        "profileDescription": "Dengan pengalaman lebih dari 5 tahun, saya berspesialisasi dalam membuat website dan aplikasi berkinerja tinggi yang tidak hanya terlihat indah tetapi juga menyelesaikan masalah dunia nyata. Saya percaya pada kekuatan kode untuk menceritakan kisah dan membangkitkan emosi.",
+        "profileIntro": "Saya adalah creative technologist dengan passion bikin pengalaman digital yang immersive. Journey saya dimulai dari rasa penasaran tentang gimana sesuatu bekerja, yang berkembang jadi karier yang nyambungin gap antara design dan engineering.",
+        "profileDescription": "Dengan pengalaman lebih dari 5 tahun, saya spesialisasi bikin website dan aplikasi high-performance yang bukan cuma keliatan bagus tapi juga solve masalah real. Saya percaya sama kekuatan code buat ngeceritain story dan ngasih emosi.",
         "traits": {
             "creative": "Kreatif",
             "innovative": "Inovatif",
-            "detailOriented": "Berorientasi Detail",
-            "teamPlayer": "Pemain Tim"
+            "detailOriented": "Detail-Oriented",
+            "teamPlayer": "Team Player"
         },
-        "downloadResume": "Unduh Resume",
-        "skillsTitle": "Keterampilan & Teknologi",
-        "skillsSubtitle": "Alat yang saya gunakan untuk mewujudkan ide",
+        "downloadResume": "Download Resume",
+        "skillsTitle": "Skills & Teknologi",
+        "skillsSubtitle": "Tools yang saya pake buat wujudin ide",
         "skillCategories": {
             "frontend": "frontend",
             "backend": "backend",
             "devOps": "devOps",
-            "designTools": "alat desain",
-            "testing": "pengujian"
+            "designTools": "design tools",
+            "testing": "testing"
         },
         "experienceTitle": "Pengalaman",
-        "valuesTitle": "Nilai Inti",
+        "valuesTitle": "Core Values",
         "values": {
             "problemSolver": {
-                "title": "Pemecah Masalah",
-                "description": "Saya berkembang dengan menangani tantangan kompleks dan menemukan solusi yang elegan."
+                "title": "Problem Solver",
+                "description": "Saya suka banget handle challenge yang kompleks dan nemuin solusi yang elegant."
             },
             "detailOriented": {
-                "title": "Berorientasi Detail",
-                "description": "Presisi dan kualitas adalah inti dari segala yang saya bangun."
+                "title": "Detail-Oriented",
+                "description": "Presisi dan kualitas adalah core dari semua yang saya bikin."
             },
             "continuousLearner": {
-                "title": "Pembelajar Berkelanjutan",
-                "description": "Selalu menjelajahi teknologi baru dan mendorong batasan."
+                "title": "Continuous Learner",
+                "description": "Always explore teknologi baru dan push boundaries."
             },
             "collaborative": {
-                "title": "Semangat Kolaboratif",
-                "description": "Produk hebat dibangun oleh tim hebat yang bekerja bersama."
+                "title": "Collaborative Spirit",
+                "description": "Produk yang banger dibikin sama tim yang solid yang kerja bareng."
             }
         },
         "statsTitle": "Berdasarkan Angka",
@@ -113,11 +113,11 @@
                 "label": "Klien Puas"
             }
         },
-        "ctaTitle": "Mari Bangun Sesuatu yang Luar Biasa",
-        "ctaSubtitle": "Saya selalu bersemangat untuk berkolaborasi pada proyek dan ide inovatif baru.",
+        "ctaTitle": "Yuk Bikin Sesuatu yang Banger",
+        "ctaSubtitle": "Saya selalu excited buat kolaborasi di proyek dan ide yang inovatif.",
         "ctaButtons": {
-            "contact": "Hubungi Saya",
-            "work": "Lihat Karya Saya"
+            "contact": "Hit Me Up",
+            "work": "Cek Karya Saya"
         },
         "experience": {
             "senior": {
@@ -125,9 +125,9 @@
                 "company": "TechCorp Inc.",
                 "period": "2022 - Sekarang",
                 "description": [
-                    "Memimpin tim yang terdiri dari 5 developer dalam membangun kembali dashboard produk inti.",
-                    "Meningkatkan performa aplikasi sebesar 60% melalui pemisahan kode dan optimasi.",
-                    "Mengimplementasikan sistem desain komprehensif menggunakan React dan Tailwind CSS."
+                    "Lead tim yang terdiri dari 5 developer buat rebuild dashboard produk inti.",
+                    "Boost performa aplikasi sebesar 60% lewat code splitting dan optimasi.",
+                    "Implement design system yang comprehensive pake React dan Tailwind CSS."
                 ]
             },
             "mid": {
@@ -135,9 +135,9 @@
                 "company": "Digital Agency X",
                 "period": "2020 - 2022",
                 "description": [
-                    "Mengembangkan website imersif pemenang penghargaan untuk klien Fortune 500.",
-                    "Mengintegrasikan pengalaman WebGL menggunakan Three.js dan GSAP.",
-                    "Berkolaborasi erat dengan desainer untuk menjembatani kesenjangan antara desain dan kode."
+                    "Develop website immersive yang menang award buat klien Fortune 500.",
+                    "Integrasi pengalaman WebGL pake Three.js dan GSAP.",
+                    "Kolaborasi erat sama designer buat nyambungin gap antara design dan code."
                 ]
             },
             "junior": {
@@ -145,9 +145,9 @@
                 "company": "StartUp Y",
                 "period": "2018 - 2020",
                 "description": [
-                    "Membangun MVP untuk platform fintech dari awal.",
-                    "Mengimplementasikan fitur visualisasi data real-time.",
-                    "Membimbing developer junior dan menetapkan standar kualitas kode."
+                    "Build MVP buat platform fintech dari nol.",
+                    "Implement fitur visualisasi data real-time.",
+                    "Mentoring developer junior dan set standar kualitas code."
                 ]
             }
         }

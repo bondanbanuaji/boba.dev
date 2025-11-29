@@ -151,10 +151,12 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Advanced logo hover animation with Anime.js
+    // Advanced logo hover animation with Anime.js (Desktop only)
     useEffect(() => {
         const logo = logoRef.current;
-        if (!logo || prefersReducedMotion) return;
+        const isMobile = window.innerWidth <= 768;
+        
+        if (!logo || prefersReducedMotion || isMobile) return;
 
         const handleMouseEnter = () => {
             anime({

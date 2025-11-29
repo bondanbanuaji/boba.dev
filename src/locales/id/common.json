@@ -9,21 +9,21 @@
         "close": "Tutup"
     },
     "intro": {
-        "question": "Siapa nama kamu?",
+        "question": "Siapa nama anda?",
         "placeholder": "Ketik di sini...",
-        "button": "Masuk",
+        "button": "Gasss",
         "greeting": "Halo"
     },
     "buttons": {
-        "viewMore": "Lihat Selengkapnya",
-        "learnMore": "Pelajari Lebih Lanjut",
-        "getInTouch": "Hubungi Saya",
+        "viewMore": "Cek Selengkapnya",
+        "learnMore": "Cek Lebih Lanjut",
+        "getInTouch": "Hit Me Up",
         "submit": "Kirim",
-        "viewGithub": "Lihat di GitHub",
-        "viewGithubProfile": "Lihat Profil GitHub"
+        "viewGithub": "Cek di GitHub",
+        "viewGithubProfile": "Cek Profil GitHub"
     },
     "common": {
-        "loading": "Memuat...",
+        "loading": "Loading...",
         "top": "Atas"
     }
 }

@@ -1,18 +1,18 @@
 {
     "yuibot-v1": {
         "title": "Yuibot V1",
-        "description": "🤖 Yui-Bot: Chatbot Telegram terinspirasi dari karakter tsundere (K-ON! Yui Hirasawa) dengan memori, mode curhat, perintah seru & Gemini API."
+        "description": "🤖 Yui-Bot: Chatbot Telegram yang inspired dari karakter tsundere (K-ON! Yui Hirasawa) dengan memori, mode curhat, perintah seru & Gemini API."
     },
     "bobanimelist": {
         "title": "Bobanimelist",
-        "description": "bobanimelist — platform penemuan anime dan manga yang dibangun dengan React, TypeScript, dan Redux Toolkit 🎬. Jelajahi anime, manga, manhwa, dan manhua dengan animasi smooth dan tema dark/light yang elegan 🌗"
+        "description": "bobanimelist — platform discover anime dan manga yang dibikin pake React, TypeScript, dan Redux Toolkit 🎬. Explore anime, manga, manhwa, dan manhua dengan animasi yang smooth dan tema dark/light yang elegant 🌗"
     },
     "taimuchatto": {
         "title": "Taimuchatto",
-        "description": "🧋 TaimuChatto adalah aplikasi chat full-stack real-time menggunakan MERN Stack (MongoDB, Express, React, Node.js) dan Socket.io. Dilengkapi dengan autentikasi JWT yang aman dan pesan instan."
+        "description": "🧋 TaimuChatto adalah aplikasi chat full-stack real-time pake MERN Stack (MongoDB, Express, React, Node.js) dan Socket.io. Dilengkapi sama autentikasi JWT yang secure dan instant messaging."
     },
     "Heart-Disease-Risk-Prediction": {
         "title": "Prediksi Risiko Penyakit Jantung",
-        "description": "Aplikasi web yang dibangun dengan Streamlit untuk memprediksi risiko penyakit jantung berdasarkan faktor demografis dan gaya hidup menggunakan model C4.5 Decision Tree yang terlatih."
+        "description": "Aplikasi web yang dibikin pake Streamlit buat prediksi risiko penyakit jantung berdasarkan faktor demografis dan lifestyle pake model C4.5 Decision Tree yang udah trained."
     }
 }

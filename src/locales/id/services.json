@@ -2,12 +2,12 @@
     "section": {
         "subtitle": "Apa yang Saya Tawarkan",
         "title": "Layanan",
-        "description": "Layanan khusus untuk mewujudkan ide digital Anda dengan teknologi terkini dan solusi kreatif."
+        "description": "Layanan khusus buat wujudin ide digital anda dengan teknologi terkini dan solusi yang kreatif."
     },
     "services": [
         {
             "title": "Full-Stack Web Development",
-            "description": "Mulai dari project sederhana sampai aplikasi lengkap dengan API, dashboard, autentikasi, database, deployment, dan real-time features. Cara kerjaku biasanya campur: desain struktur dulu, baru ngoding frontend–backend supaya nyatu mulus.",
+            "description": "Mulai dari project simpel sampe aplikasi lengkap dengan API, dashboard, autentikasi, database, deployment, dan real-time features. Cara kerja saya biasanya: desain struktur dulu, baru ngoding frontend–backend supaya nyatu mulus.",
             "skills": [
                 "Laravel 12",
                 "React",
@@ -20,7 +20,7 @@
         },
         {
             "title": "Modern Interface",
-            "description": "Bukan sekadar ngerangkai elemen UI, tapi ngeracik pengalaman yang keliatan rapi, stabil, dan enak dipakai. Dari responsive layout yang fleksibel, dark mode yang elegan, sampai komponen interaktif yang nyatu sama alur pengguna. Intinya: bikin UI yang terasa modern tanpa kesan yang berlebihan, dan tetap ngejaga performa di semua device.",
+            "description": "Bukan cuma ngerangkai elemen UI, tapi ngeracik pengalaman yang keliatan rapi, stabil, dan enak dipake. Dari responsive layout yang fleksibel, dark mode yang elegant, sampe komponen interaktif yang nyatu sama user flow. Intinya: bikin UI yang terasa modern tanpa kesan berlebihan, dan tetap jaga performa di semua device.",
             "skills": [
                 "Responsive UI",
                 "Modern JavaScript",
@@ -33,7 +33,7 @@
         },
         {
             "title": "UI/UX Design",
-            "description": "Layout yang rapi dan nggak bikin pusing? Udah sering banget ngerjain. Fokusnya simpel: bikin tampilan yang enak dilihat, gampang dipahami, dan tetap responsif di semua device.",
+            "description": "Layout yang rapi dan gak bikin pusing? Udah sering banget ngerjain. Fokusnya simpel: bikin tampilan yang enak dilihat, gampang dipahami, dan tetap responsif di semua device.",
             "skills": [
                 "Figma",
                 "Design Systems",
@@ -46,7 +46,7 @@
         },
         {
             "title": "Network & Automation Development",
-            "description": "Termasuk bikin sistem monitoring jaringan kampus yang jalan otomatis pakai Python untuk cek ping, port, status perangkat, terus ngirim datanya ke Laravel buat ditampilin di dashboard.",
+            "description": "Termasuk bikin sistem monitoring jaringan kampus yang jalan otomatis pake Python buat cek ping, port, status perangkat, terus kirim datanya ke Laravel buat ditampilin di dashboard.",
             "skills": [
                 "Python Automation",
                 "Network Monitoring",
@@ -60,7 +60,7 @@
         },
         {
             "title": "Performance Optimization",
-            "description": "Aku suka ngejar performa. Bukan cuma website harus cepat — tapi harus *kerasa* cepat. Ngerapihin animasi biar nggak patah-patah, ngecilin file, nurunin layout shift, sampai bikin scroll 120fps feeling.",
+            "description": "Saya suka ngejar performa. Bukan cuma website harus cepat — tapi harus kerasa cepat. Ngerapihin animasi biar gak patah-patah, ngecilin file, nurunin layout shift, sampe bikin scroll 120fps yang smooth banget.",
             "skills": [
                 "Lazy Loading",
                 "Code Splitting",
@@ -73,7 +73,7 @@
         },
         {
             "title": "Technical Consulting",
-            "description": "Kadang orang cuma butuh arahan: pakai stack apa, kenapa error ini muncul, gimana cara deploy yang bener, atau gimana nyusun arsitektur biar kuat di jangka panjang.",
+            "description": "Kadang orang cuma butuh arahan: pake stack apa, kenapa error ini muncul, gimana cara deploy yang bener, atau gimana nyusun arsitektur biar solid di jangka panjang.",
             "skills": [
                 "System Design",
                 "Debugging",
@@ -85,5 +85,5 @@
             "icon": "Lightbulb"
         }
     ],
-    "cta": "Siap mewujudkan visi Anda?"
+    "cta": "Siap wujudin visi anda?"
 }
