@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from 'react-i18next';
 import Parallax from '@/components/ui/Parallax';
+import ProfileCard from '@/components/atom/ProfileCard';
 import FallingText from '@/components/FallingText';
 import LogoLoop from '@/components/LogoLoop';
 import StarBorder from '@/components/StarBorder';
@@ -13,8 +14,6 @@ import { SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs, SiLarave
 import '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
-
-
 
 const techLogos = [
     { node: <SiReact className="text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
@@ -323,21 +322,7 @@ export default function About() {
 
                     {/* Right: Profile Image */}
                     <Parallax speed={0.05}>
-                        <div className="profile-card relative group h-full">
-                            <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/30 transition-all duration-500 h-full">
-
-                                <img
-                                    src="https://avatars.githubusercontent.com/bondanbanuaji"
-                                    alt="Bondan Banuaji"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                />
-
-                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
-
-                                <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white/20 rounded-full blur-sm opacity-50"></div>
-                                <div className="absolute bottom-4 left-4 w-32 h-32 border-2 border-white/20 rounded-full blur-sm opacity-50"></div>
-                            </div>
-                        </div>
+                        <ProfileCard />
                     </Parallax>
                 </div>
 
