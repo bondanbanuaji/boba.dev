@@ -15,6 +15,20 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     const [lenis, setLenis] = useState<Lenis | null>(null);
 
     useEffect(() => {
+        // Only enable Lenis on desktop (width > 768px)
+        const isDesktop = window.innerWidth > 768;
+        
+        if (!isDesktop) {
+            // For mobile, just use native scroll
+            ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
+            // Ensure no lenis class on html
+            document.documentElement.classList.remove('lenis');
+            return;
+        }
+
+        // Add lenis class to html for desktop
+        document.documentElement.classList.add('lenis');
+
         const lenisInstance = new Lenis({
             duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -28,6 +42,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
         requestAnimationFrame(() => {
             setLenis(lenisInstance);
+            // Expose Lenis to window for other components
+            (window as any).lenis = lenisInstance;
         });
 
         lenisInstance.on('scroll', ScrollTrigger.update);
@@ -40,6 +56,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
         return () => {
             lenisInstance.destroy();
+            (window as any).lenis = null;
+            document.documentElement.classList.remove('lenis');
             gsap.ticker.remove((time) => {
                 lenisInstance.raf(time * 1000);
             });

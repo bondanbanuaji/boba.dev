@@ -107,29 +107,48 @@ main {
     position: relative;
 }
 
-/* Mobile: Native smooth scroll, no Lenis */
+/* Mobile: Native smooth scroll ONLY */
 @media (max-width: 768px) {
     html {
         scroll-behavior: smooth;
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
     }
     
     body {
-        overflow-y: visible;
+        overflow-y: auto;
+        overflow-x: hidden;
         min-height: 100vh;
         position: relative;
     }
     
     main {
-        overflow: visible;
+        overflow-x: hidden;
+        overflow-y: visible;
     }
 }
 
-/* Desktop: Lenis handles scrolling */
+/* Desktop: Lenis handles scrolling - disable native scroll on html/body */
 @media (min-width: 769px) {
-    html, body {
-        overflow-y: auto;
+    html {
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    body {
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    html.lenis {
+        overflow: visible;
+        height: auto;
+    }
+    
+    html.lenis body {
+        overflow: visible;
+        height: auto;
     }
 }
 
