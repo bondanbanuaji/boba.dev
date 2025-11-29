@@ -67,19 +67,27 @@ export default function Projects() {
 
         const projectCards = gsap.utils.toArray<HTMLElement>('.project-card');
 
-        projectCards.forEach((project) => {
-            gsap.from(project, {
-                scrollTrigger: {
-                    trigger: project,
-                    start: 'top 85%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
+        // Staggered card entrance from bottom (production quality)
+        projectCards.forEach((project, index) => {
+            gsap.fromTo(project,
+                {
+                    y: 80,
+                    opacity: 0,
                 },
-                y: 100,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            });
+                {
+                    scrollTrigger: {
+                        trigger: project,
+                        start: 'top 85%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: index * 0.1,  // 100ms stagger
+                    ease: 'power3.out'
+                }
+            );
         });
     }, { scope: containerRef, dependencies: [loading, projects] });
 
@@ -124,12 +132,12 @@ export default function Projects() {
                             className={`project-card group relative ${index % 2 === 1 ? 'md:mt-20 lg:mt-32' : ''}`}
                         >
                             <Parallax speed={index % 2 === 0 ? 0.05 : 0.15} className="mb-8">
-                                <div className="aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-2xl overflow-hidden relative">
+                                <div className="aspect-[16/9] md:aspect-[4/3] lg:aspect-[16/10] bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-2xl overflow-hidden relative group-hover:shadow-2xl group-hover:shadow-white/20 transition-shadow duration-300">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                        className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.08]"
                                     />
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                                 </div>

@@ -10,6 +10,7 @@ import ProfileCard from '@/components/atom/ProfileCard';
 import FallingText from '@/components/FallingText';
 import LogoLoop from '@/components/LogoLoop';
 import StarBorder from '@/components/StarBorder';
+import CountUpNumber from '@/components/ui/CountUpNumber';
 import { SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiNodedotjs, SiLaravel, SiPhp, SiPython, SiThreedotjs, SiGreensock, SiFramer, SiTailwindcss, SiMongodb, SiMysql, SiPostgresql, SiVuedotjs, SiGit, SiGithub, SiVercel } from 'react-icons/si';
 import '@/lib/i18n';
 
@@ -42,6 +43,7 @@ const techLogos = [
 export default function About() {
     const { t } = useTranslation('about');
     const [isMounted, setIsMounted] = useState(false);
+    const [statsInView, setStatsInView] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const bioRef = useRef<HTMLDivElement>(null);
@@ -133,7 +135,7 @@ export default function About() {
             );
         }
 
-        // Stats Animation
+        // Stats Animation with count-up trigger
         const statCards = gsap.utils.toArray<HTMLElement>('.stat-card');
         if (statCards.length > 0) {
             gsap.fromTo(statCards,
@@ -149,7 +151,11 @@ export default function About() {
                         start: 'top 80%',
                         end: 'top 40%',
                         toggleActions: 'play none none reverse',
-                        onEnter: () => gsap.set(statCards, { opacity: 1 }),
+                        onEnter: () => {
+                            gsap.set(statCards, { opacity: 1 });
+                            setStatsInView(true); // Trigger count-up animations
+                        },
+                        onLeaveBack: () => setStatsInView(false),
                     },
                     opacity: 1,
                     scale: 1,
@@ -329,23 +335,35 @@ export default function About() {
                 {/* Stats Grid */}
                 <Parallax speed={0.03}>
                     <div className="stats-grid grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-20 md:mb-32">
-                        {stats.map((stat, index) => (
-                            <StarBorder
-                                key={index}
-                                as="div"
-                                className="stat-card w-full"
-                                color="cyan"
-                                speed="5s"
-                            >
-                                <div className="text-center group">
-                                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500">
-                                        {stat.number}
+                        {stats.map((stat, index) => {
+                            // Parse number from string (e.g., "559+" -> 559, "97%" -> 97)
+                            const numStr = stat.number.replace(/[^0-9.]/g, '');
+                            const numValue = parseFloat(numStr) || 0;
+                            const suffix = stat.number.replace(/[0-9.]/g, '');
+
+                            return (
+                                <StarBorder
+                                    key={index}
+                                    as="div"
+                                    className="stat-card w-full"
+                                    color="cyan"
+                                    speed="5s"
+                                >
+                                    <div className="text-center group">
+                                        <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-500">
+                                            <CountUpNumber
+                                                end={numValue}
+                                                duration={2000}
+                                                suffix={suffix}
+                                                trigger={statsInView}
+                                            />
+                                        </div>
+                                        <div className="text-sm md:text-base font-medium opacity-80">{stat.label}</div>
+                                        <div className="text-xs opacity-50">{stat.sublabel}</div>
                                     </div>
-                                    <div className="text-sm md:text-base font-medium opacity-80">{stat.label}</div>
-                                    <div className="text-xs opacity-50">{stat.sublabel}</div>
-                                </div>
-                            </StarBorder>
-                        ))}
+                                </StarBorder>
+                            );
+                        })}
                     </div>
                 </Parallax>
 

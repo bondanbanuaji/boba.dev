@@ -4,20 +4,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import anime from 'animejs';
 import { useTranslation } from 'react-i18next';
 import MagneticButton from '@/components/ui/MagneticButton';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { useLenis } from '@/components/layout/SmoothScroll';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import '@/lib/i18n';
 
 export default function Navbar() {
     const { t } = useTranslation('common');
     const navRef = useRef<HTMLElement>(null);
     const mobileMenuRef = useRef<HTMLDivElement>(null);
+    const logoRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const lenis = useLenis();
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         setIsMounted(true);
@@ -133,25 +138,72 @@ export default function Navbar() {
         }
     }, [isOpen]);
 
+    // Scroll-based navbar background blur & transparency
+    useEffect(() => {
+        if (!navRef.current) return;
+
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            setIsScrolled(scrollY > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Advanced logo hover animation with Anime.js
+    useEffect(() => {
+        const logo = logoRef.current;
+        if (!logo || prefersReducedMotion) return;
+
+        const handleMouseEnter = () => {
+            anime({
+                targets: logo,
+                scale: 1.12,
+                rotate: '8deg',
+                duration: 350,
+                easing: 'easeOutElastic(1, 0.6)',
+            });
+        };
+
+        const handleMouseLeave = () => {
+            anime({
+                targets: logo,
+                scale: 1,
+                rotate: '0deg',
+                duration: 350,
+                easing: 'easeOutElastic(1, 0.6)',
+            });
+        };
+
+        logo.addEventListener('mouseenter', handleMouseEnter);
+        logo.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            logo.removeEventListener('mouseenter', handleMouseEnter);
+            logo.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, [prefersReducedMotion]);
+
     return (
         <>
             <nav
                 ref={navRef}
                 className={`fixed top-0 left-0 w-full z-[60] px-6 py-4 flex justify-between items-center text-white pointer-events-none ${!isOpen ? 'mix-blend-difference' : ''}`}
             >
-                <div className='relative z-[60] md:left-5 md:top-1 pointer-events-auto'>
+                <div ref={logoRef} className='relative z-[60] md:left-5 md:top-1 pointer-events-auto'>
                     <Link href='/'>
                         <Image
-                            src='/img/Logo/boba-dark-logo-removebg-preview.png'
+                            src={isOpen ? '/img/Logo/boba-light-logo-removebg-preview.png' : '/img/Logo/boba-dark-logo-removebg-preview.png'}
                             alt='Logo'
                             width={100}
                             height={100}
-                            className='w-16 h-auto sm:w-20 md:w-24 lg:w-28'
+                            className='w-16 h-auto sm:w-20 md:w-24 lg:w-28 transition-opacity duration-300'
                             priority
                         />
                     </Link>
                 </div>
-
+                
                 {/* Desktop Menu */}
                 <div className='hidden md:flex gap-8 items-center pointer-events-auto'>
                     {navLinks.map((link) => (

@@ -114,18 +114,19 @@ main {
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+        height: 100%;
     }
     
     body {
-        overflow-y: auto;
+        overflow-y: visible;
         overflow-x: hidden;
         min-height: 100vh;
         position: relative;
     }
     
     main {
-        overflow-x: hidden;
-        overflow-y: visible;
+        overflow: visible;
+        position: relative;
     }
 }
 
