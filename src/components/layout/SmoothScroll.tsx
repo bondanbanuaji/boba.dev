@@ -15,20 +15,14 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     const [lenis, setLenis] = useState<Lenis | null>(null);
 
     useEffect(() => {
-        const isMobile = window.innerWidth <= 768;
-        
-        if (isMobile) {
-            return;
-        }
-        
         const lenisInstance = new Lenis({
-            duration: 1.6,
+            duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
             wheelMultiplier: 0.7,
-            touchMultiplier: 2,
+            touchMultiplier: 1.5,
             infinite: false,
         });
 

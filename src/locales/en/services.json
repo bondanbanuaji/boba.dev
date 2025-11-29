@@ -6,45 +6,84 @@
     },
     "services": [
         {
-            "title": "Web Development",
-            "description": "Building modern, responsive websites and web applications using the latest technologies and best practices.",
-            "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-            "icon": "🌐"
+            "title": "Full-Stack Web Development",
+            "description": "I build everything from the interface users click on to the backend logic that keeps the whole system running.",
+            "skills": [
+                "Laravel 12",
+                "React",
+                "TailwindCSS",
+                "REST API",
+                "MySQL",
+                "Authentication"
+            ],
+            "icon": "Code2"
         },
         {
-            "title": "Full Stack Development",
-            "description": "End-to-end development from database design to frontend implementation with seamless API integration.",
-            "skills": ["Node.js", "Express", "PostgreSQL", "MongoDB"],
-            "icon": "⚙️"
+            "title": "Modern Interface",
+            "description": "I focus on building interfaces that feel modern, clean, and effortless.",
+            "skills": [
+                "Responsive UI",
+                "Modern JavaScript",
+                "TailwindCSS Styling",
+                "UI Architecture",
+                "State Management",
+                "Reusable Components"
+            ],
+            "icon": "Sparkles"
         },
         {
-            "title": "3D Web Experiences",
-            "description": "Creating immersive 3D experiences and animations using Three.js, WebGL, and GSAP for engaging user interactions.",
-            "skills": ["Three.js", "WebGL", "GSAP", "Blender"],
-            "icon": "✨"
+            "title": "UI/UX Design",
+            "description": "I design interfaces that look clean and feel natural. Dark mode, smooth micro-interactions, and clean layouts are my specialty.",
+            "skills": [
+                "Figma",
+                "Design Systems",
+                "Responsive UI",
+                "Dark Mode",
+                "Micro-Interactions",
+                "Mobile-first Design"
+            ],
+            "icon": "Palette"
         },
         {
-            "title": "UI/UX Development",
-            "description": "Translating designs into pixel-perfect, interactive interfaces with smooth animations and transitions.",
-            "skills": ["Figma", "Framer Motion", "GSAP", "CSS"],
-            "icon": "🎨"
-        },
-        {
-            "title": "API Development",
-            "description": "Designing and building RESTful and GraphQL APIs with proper authentication, validation, and documentation.",
-            "skills": ["REST", "GraphQL", "JWT", "API Design"],
-            "icon": "🔌"
+            "title": "Network & Automation Development",
+            "description": "I work on tools that help networks stay alive and monitored, including automated monitoring systems and workflow automations.",
+            "skills": [
+                "Python Automation",
+                "Network Monitoring",
+                "Mikrotik Winbox",
+                "CLI Tools",
+                "Laravel API",
+                "Infrastructure Flow",
+                "Background Jobs"
+            ],
+            "icon": "Layers"
         },
         {
             "title": "Performance Optimization",
-            "description": "Optimizing web applications for speed, SEO, and accessibility to deliver the best user experience.",
-            "skills": ["Lighthouse", "SEO", "Web Vitals", "Optimization"],
-            "icon": "⚡"
+            "description": "I love chasing performance. Making websites not just fast, but *feeling* fast with smooth animations and optimized assets.",
+            "skills": [
+                "Lazy Loading",
+                "Code Splitting",
+                "Optimized Animations",
+                "Caching",
+                "Core Web Vitals",
+                "Image Optimization"
+            ],
+            "icon": "Zap"
+        },
+        {
+            "title": "Technical Consulting",
+            "description": "Providing clear direction on tech stacks, debugging, deployment strategies, and architectural decisions in plain language.",
+            "skills": [
+                "System Design",
+                "Debugging",
+                "Security Basics",
+                "Deployment",
+                "Tech Strategy",
+                "Code Review"
+            ],
+            "icon": "Lightbulb"
         }
     ],
-    "cta": {
-        "title": "Ready to Start a Project?",
-        "description": "Let's collaborate and create something extraordinary together.",
-        "button": "Get In Touch"
-    }
+    "cta": "Ready to bring your vision to life?"
 }

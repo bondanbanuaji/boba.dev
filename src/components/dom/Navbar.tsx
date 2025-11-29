@@ -10,8 +10,6 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { useLenis } from '@/components/layout/SmoothScroll';
 import '@/lib/i18n';
 
-
-
 export default function Navbar() {
     const { t } = useTranslation('common');
     const navRef = useRef<HTMLElement>(null);
@@ -19,8 +17,8 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const lenis = useLenis();
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Prevent hydration mismatch by only rendering translations after mount
     useEffect(() => {
         setIsMounted(true);
     }, []);
@@ -33,26 +31,57 @@ export default function Navbar() {
         { name: isMounted ? t('nav.contact') : 'Contact', href: '#contact' },
     ];
 
-    const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
-        const targetId = href.replace('#', '');
+    // Handle scroll to section
+    const handleScrollToSection = (targetId: string) => {
         const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
 
-        if (targetElement && lenis) {
+        if (lenis) {
             lenis.scrollTo(targetElement, {
                 offset: 0,
                 duration: 1.5,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
-
-            // Close mobile menu if open
-            if (isOpen) {
-                setIsOpen(false);
-            }
+        } else {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // Close menu dengan delay kecil
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+            closeMenu();
+        }, 100);
     };
 
-    // Initial Load Animation
+    // Close menu
+    const closeMenu = () => {
+        if (!isOpen) return;
+
+        gsap.to('.mobile-nav-link', {
+            y: -30,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: 'power3.in',
+        });
+
+        gsap.to(mobileMenuRef.current, {
+            clipPath: 'circle(0% at 100% 0%)',
+            duration: 0.5,
+            ease: 'power4.inOut',
+            delay: 0.15,
+            onComplete: () => {
+                setIsOpen(false);
+            },
+        });
+    };
+
+    // Toggle menu
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+    // Desktop nav animation on mount
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.set('.nav-link-desktop', { y: -20, opacity: 0 });
@@ -69,14 +98,16 @@ export default function Navbar() {
         return () => ctx.revert();
     }, []);
 
-    // Mobile Menu Animation
+    // Mobile menu animation
     useEffect(() => {
+        if (!mobileMenuRef.current) return;
+
         if (isOpen) {
-            // Don't manipulate overflow - Lenis handles it
+            mobileMenuRef.current.style.pointerEvents = 'auto';
 
             gsap.to(mobileMenuRef.current, {
                 clipPath: 'circle(150% at 100% 0%)',
-                duration: 1,
+                duration: 0.8,
                 ease: 'power4.inOut',
             });
 
@@ -86,16 +117,17 @@ export default function Navbar() {
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.1,
+                    duration: 0.6,
+                    stagger: 0.08,
                     ease: 'power3.out',
-                    delay: 0.3,
+                    delay: 0.2,
                 }
             );
         } else {
+            mobileMenuRef.current.style.pointerEvents = 'none';
             gsap.to(mobileMenuRef.current, {
                 clipPath: 'circle(0% at 100% 0%)',
-                duration: 0.8,
+                duration: 0.5,
                 ease: 'power4.inOut',
             });
         }
@@ -105,10 +137,10 @@ export default function Navbar() {
         <>
             <nav
                 ref={navRef}
-                className='fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-white'
+                className={`fixed top-0 left-0 w-full z-[60] px-6 py-4 flex justify-between items-center text-white pointer-events-none ${!isOpen ? 'mix-blend-difference' : ''}`}
             >
-                <div className='relative z-[60] md:left-5 md:top-1'>
-                    <Link href='/' className='block'>
+                <div className='relative z-[60] md:left-5 md:top-1 pointer-events-auto'>
+                    <Link href='/'>
                         <Image
                             src='/img/Logo/boba-dark-logo-removebg-preview.png'
                             alt='Logo'
@@ -121,16 +153,15 @@ export default function Navbar() {
                 </div>
 
                 {/* Desktop Menu */}
-                <div className='hidden md:flex gap-8 items-center'>
+                <div className='hidden md:flex gap-8 items-center pointer-events-auto'>
                     {navLinks.map((link) => (
-                        <MagneticButton key={link.name} strength={0.2} className="inline-block">
-                            <a
-                                href={link.href}
-                                onClick={(e) => handleScrollToSection(e, link.href)}
-                                className='nav-link-desktop text-white text-sm uppercase tracking-widest hover:opacity-70 transition-opacity px-4 py-2 block cursor-pointer'
+                        <MagneticButton key={link.href} strength={0.2} className="inline-block">
+                            <button
+                                onClick={() => handleScrollToSection(link.href.replace('#', ''))}
+                                className='nav-link-desktop text-white text-sm uppercase tracking-widest hover:opacity-70 transition-opacity px-4 py-2 cursor-pointer border-none bg-none p-0'
                             >
                                 {link.name}
-                            </a>
+                            </button>
                         </MagneticButton>
                     ))}
                     <div className='nav-link-desktop'>
@@ -139,10 +170,10 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <div className='md:hidden relative z-[60]'>
+                <div className='md:hidden relative z-[60] pointer-events-auto'>
                     <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className='text-sm uppercase tracking-widest hover:opacity-70 transition-opacity'
+                        onClick={toggleMenu}
+                        className={`text-sm uppercase tracking-widest hover:opacity-70 transition-all duration-300 border-none bg-none cursor-pointer ${isOpen ? 'text-black' : 'text-white'}`}
                     >
                         {isOpen ? (isMounted ? t('nav.close') : 'Close') : (isMounted ? t('nav.menu') : 'Menu')}
                     </button>
@@ -152,19 +183,18 @@ export default function Navbar() {
             {/* Mobile Menu Overlay */}
             <div
                 ref={mobileMenuRef}
-                className='fixed inset-0 bg-white z-40 flex flex-col justify-center items-center md:hidden'
+                className='fixed inset-0 bg-white z-[55] flex flex-col justify-center items-center md:hidden pointer-events-none'
                 style={{ clipPath: 'circle(0% at 100% 0%)' }}
             >
                 <div className='flex flex-col gap-6 items-center'>
                     {navLinks.map((link) => (
-                        <div key={link.name} className='overflow-hidden'>
-                            <a
-                                href={link.href}
-                                onClick={(e) => handleScrollToSection(e, link.href)}
-                                className='mobile-nav-link relative block text-black text-5xl font-bold tracking-tighter after:content-[""] after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-0 after:h-[4px] after:bg-black after:transition-all after:duration-500 hover:after:w-full cursor-pointer'
+                        <div key={link.href} className='overflow-hidden'>
+                            <button
+                                onClick={() => handleScrollToSection(link.href.replace('#', ''))}
+                                className='mobile-nav-link relative text-black text-5xl font-bold tracking-tighter after:content-[""] after:absolute after:left-0 after:top-1/2 after:-translate-y-1/2 after:w-0 after:h-[4px] after:bg-black after:transition-all after:duration-500 hover:after:w-full cursor-pointer border-none bg-none p-0 m-0'
                             >
                                 {link.name}
-                            </a>
+                            </button>
                         </div>
                     ))}
                     <div className='mobile-nav-link mt-4'>

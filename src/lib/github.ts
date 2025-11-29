@@ -73,16 +73,61 @@ const PROJECT_IMAGES: Record<string, string> = {
 
 // Mapping untuk custom tech stack setiap project
 const PROJECT_TECH_STACK: Record<string, string[]> = {
-    'yuibot-v1': ['Python', 'Telegram Bot API', 'Gemini AI'],
-    'bobanimelist': ['TypeScript', 'React', 'Redux Toolkit', 'TailwindCSS'],
-    'taimuchatto': ['JavaScript', 'React', 'Node.js', 'Socket.io'],
+    'yuibot-v1': [
+        "python",
+        "telegram-bot",
+        "chatbot-personality",
+        "telegram-chatbot",
+        "gemini-api",
+        "bot-development",
+        "anime-bot",
+        "ai-chatbot",
+        "natural-languange-processing",
+        "tsundere",
+        "character-ai",
+        "yui-hirasawa",
+        "gemini-llm",
+        "kon-anime"
+    ]
+    ,
+    'bobanimelist': [
+        "react",
+        "typescript",
+        "anime",
+        "manga",
+        "web-application",
+        "anilist",
+        "responsive-design",
+        "ui-ux",
+        "anime-search",
+        "manga-search",
+        "otaku",
+        "api-integration",
+        "jikan",
+        "vite",
+        "redux-toolkit",
+        "Resources"
+    ],
+    'taimuchatto': [
+        "react",
+        "nodejs",
+        "jwt",
+        "express",
+        "mongodb",
+        "authentication",
+        "websocket",
+        "socket-io",
+        "mern-stack",
+        "realtime-chat",
+        "tailwidcss"
+    ],
     'Heart-Disease-Risk-Prediction': ['Python', 'Streamlit', 'Machine Learning', 'Scikit-learn'],
 };
 
 export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promise<PinnedRepo[]> {
     try {
         console.log('🔍 Fetching pinned repos from GitHub API...');
-        
+
         // Prepare headers with optional authentication
         const headers: HeadersInit = {
             'Content-Type': 'application/json',
@@ -136,7 +181,7 @@ export async function getPinnedRepos(username: string = 'bondanbanuaji'): Promis
             .filter((repo) => !repo.isPrivate) // Filter hanya public repos
             .map((repo) => {
                 // Gunakan custom tech stack jika tersedia, fallback ke GitHub languages
-                const techStack = PROJECT_TECH_STACK[repo.name] || 
+                const techStack = PROJECT_TECH_STACK[repo.name] ||
                     repo.languages.nodes.slice(0, 4).map((lang) => lang.name);
 
                 return {

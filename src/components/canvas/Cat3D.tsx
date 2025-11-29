@@ -1,9 +1,11 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Cone, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Cat3D() {
     const headRef = useRef<THREE.Group>(null);
@@ -27,10 +29,21 @@ export default function Cat3D() {
         const t = state.clock.getElapsedTime();
         const mouse = state.pointer;
 
-        headRef.current.position.y = Math.sin(t * 1.5) * 0.1;
-        headRef.current.rotation.z = Math.sin(t * 1) * 0.05;
-        headRef.current.rotation.y = THREE.MathUtils.lerp(headRef.current.rotation.y, mouse.x * 0.5, 0.1);
-        headRef.current.rotation.x = THREE.MathUtils.lerp(headRef.current.rotation.x, -mouse.y * 0.3, 0.1);
+        // Base idle animation
+        const idleY = Math.sin(t * 1.5) * 0.1;
+        const idleZ = Math.sin(t * 1) * 0.05;
+
+        // Mouse interaction
+        const targetRotY = mouse.x * 0.5;
+        const targetRotX = -mouse.y * 0.3;
+
+        // Apply animations
+        headRef.current.position.y = idleY;
+        headRef.current.rotation.z = idleZ;
+
+        // Smoothly interpolate rotation (combining mouse and potential scroll effects if added via refs)
+        headRef.current.rotation.y = THREE.MathUtils.lerp(headRef.current.rotation.y, targetRotY, 0.1);
+        headRef.current.rotation.x = THREE.MathUtils.lerp(headRef.current.rotation.x, targetRotX, 0.1);
 
         const lookAtTarget = new THREE.Vector3(mouse.x * 5, mouse.y * 5, 5);
 
@@ -41,6 +54,30 @@ export default function Cat3D() {
             rightEyeRef.current.lookAt(lookAtTarget);
         }
     });
+
+    // Scroll Animation
+    useEffect(() => {
+        if (!headRef.current) return;
+
+        // Register ScrollTrigger if not already (it's safe to call multiple times)
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            gsap.to(headRef.current!.rotation, {
+                scrollTrigger: {
+                    trigger: document.body, // Use body as trigger since canvas is fixed
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1.5, // Smooth scrub matching "heavy" feel
+                },
+                x: "+=0.5", // Rotate slightly down/up as you scroll
+                y: "+=0.5", // Rotate slightly side to side
+                ease: "none",
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
 
     return (
         <group position={[0, 0, 0]} scale={1.5}>

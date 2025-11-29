@@ -6,45 +6,84 @@
     },
     "services": [
         {
-            "title": "Pengembangan Web",
-            "description": "Membangun website dan aplikasi web modern yang responsif menggunakan teknologi terkini dan praktik terbaik.",
-            "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-            "icon": "🌐"
+            "title": "Full-Stack Web Development",
+            "description": "Mulai dari project sederhana sampai aplikasi lengkap dengan API, dashboard, autentikasi, database, deployment, dan real-time features. Cara kerjaku biasanya campur: desain struktur dulu, baru ngoding frontend–backend supaya nyatu mulus.",
+            "skills": [
+                "Laravel 12",
+                "React",
+                "TailwindCSS",
+                "REST API",
+                "MySQL",
+                "Authentication"
+            ],
+            "icon": "Code2"
         },
         {
-            "title": "Pengembangan Full Stack",
-            "description": "Pengembangan end-to-end dari desain database hingga implementasi frontend dengan integrasi API yang seamless.",
-            "skills": ["Node.js", "Express", "PostgreSQL", "MongoDB"],
-            "icon": "⚙️"
+            "title": "Modern Interface",
+            "description": "Bukan sekadar ngerangkai elemen UI, tapi ngeracik pengalaman yang keliatan rapi, stabil, dan enak dipakai. Dari responsive layout yang fleksibel, dark mode yang elegan, sampai komponen interaktif yang nyatu sama alur pengguna. Intinya: bikin UI yang terasa modern tanpa kesan yang berlebihan, dan tetap ngejaga performa di semua device.",
+            "skills": [
+                "Responsive UI",
+                "Modern JavaScript",
+                "TailwindCSS Styling",
+                "UI Architecture",
+                "State Management",
+                "Reusable Components"
+            ],
+            "icon": "Sparkles"
         },
         {
-            "title": "Pengalaman Web 3D",
-            "description": "Menciptakan pengalaman 3D yang imersif dan animasi menggunakan Three.js, WebGL, dan GSAP untuk interaksi pengguna yang menarik.",
-            "skills": ["Three.js", "WebGL", "GSAP", "Blender"],
-            "icon": "✨"
+            "title": "UI/UX Design",
+            "description": "Layout yang rapi dan nggak bikin pusing? Udah sering banget ngerjain. Fokusnya simpel: bikin tampilan yang enak dilihat, gampang dipahami, dan tetap responsif di semua device.",
+            "skills": [
+                "Figma",
+                "Design Systems",
+                "Responsive UI",
+                "Dark Mode",
+                "Micro-Interactions",
+                "Mobile-first Design"
+            ],
+            "icon": "Palette"
         },
         {
-            "title": "Pengembangan UI/UX",
-            "description": "Menerjemahkan desain menjadi antarmuka interaktif yang pixel-perfect dengan animasi dan transisi yang halus.",
-            "skills": ["Figma", "Framer Motion", "GSAP", "CSS"],
-            "icon": "🎨"
+            "title": "Network & Automation Development",
+            "description": "Termasuk bikin sistem monitoring jaringan kampus yang jalan otomatis pakai Python untuk cek ping, port, status perangkat, terus ngirim datanya ke Laravel buat ditampilin di dashboard.",
+            "skills": [
+                "Python Automation",
+                "Network Monitoring",
+                "CLI Tools",
+                "Laravel API",
+                "Mikrotik Winbox",
+                "Infrastructure Flow",
+                "Background Jobs"
+            ],
+            "icon": "Layers"
         },
         {
-            "title": "Pengembangan API",
-            "description": "Merancang dan membangun RESTful dan GraphQL API dengan autentikasi, validasi, dan dokumentasi yang tepat.",
-            "skills": ["REST", "GraphQL", "JWT", "API Design"],
-            "icon": "🔌"
+            "title": "Performance Optimization",
+            "description": "Aku suka ngejar performa. Bukan cuma website harus cepat — tapi harus *kerasa* cepat. Ngerapihin animasi biar nggak patah-patah, ngecilin file, nurunin layout shift, sampai bikin scroll 120fps feeling.",
+            "skills": [
+                "Lazy Loading",
+                "Code Splitting",
+                "Optimized Animations",
+                "Caching",
+                "Core Web Vitals",
+                "Image Optimization"
+            ],
+            "icon": "Zap"
         },
         {
-            "title": "Optimasi Performa",
-            "description": "Mengoptimalkan aplikasi web untuk kecepatan, SEO, dan aksesibilitas guna memberikan pengalaman pengguna terbaik.",
-            "skills": ["Lighthouse", "SEO", "Web Vitals", "Optimization"],
-            "icon": "⚡"
+            "title": "Technical Consulting",
+            "description": "Kadang orang cuma butuh arahan: pakai stack apa, kenapa error ini muncul, gimana cara deploy yang bener, atau gimana nyusun arsitektur biar kuat di jangka panjang.",
+            "skills": [
+                "System Design",
+                "Debugging",
+                "Security Basics",
+                "Deployment",
+                "Tech Strategy",
+                "Code Review"
+            ],
+            "icon": "Lightbulb"
         }
     ],
-    "cta": {
-        "title": "Siap Memulai Proyek?",
-        "description": "Mari berkolaborasi dan menciptakan sesuatu yang luar biasa bersama.",
-        "button": "Hubungi Saya"
-    }
+    "cta": "Siap mewujudkan visi Anda?"
 }

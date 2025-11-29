@@ -32,20 +32,20 @@ export default function Services() {
     const services = [
         {
             icon: Code2,
-            title: isMounted ? t('services.0.title') : 'Fullstack Web Development',
+            title: isMounted ? t('services.0.title') : 'Full-Stack Web Development',
             description: isMounted
                 ? t('services.0.description')
                 : `I build everything from the interface users click on to the backend logic that keeps the whole system running. Mulai dari project sederhana sampai aplikasi lengkap dengan API, dashboard, autentikasi, database, deployment, dan real-time features. Cara kerjaku biasanya campur: desain struktur dulu, baru ngoding frontend–backend supaya nyatu mulus.`,
-            skills: ['Laravel', 'React', 'Vue' ,'TailwindCSS', 'REST API', 'MySQL', 'PostgreSQL', 'Supabase', 'Streamlit'],
+            skills: ['Laravel 12', 'React', 'TailwindCSS', 'REST API', 'MySQL', 'Authentication'],
             gradient: 'from-blue-500/20 to-cyan-500/20'
         },
         {
             icon: Sparkles,
-            title: isMounted ? t('services.1.title') : 'Frontend Development',
+            title: isMounted ? t('services.1.title') : 'Modern Interface',
             description: isMounted
                 ? t('services.1.description')
-                : `Frontend is where I play. I love making things move, respond, glow, fade, slide — pokoknya yang bikin pengguna ngerasa "anjay smooth". Dari navbar animasi, efek scroll, 3D-ish slider, sampai page yang rasanya kayak aplikasi modern. Semua dibuat biar ringan, cepat, dan enak dipakai di layar sekecil apa pun.`,
-            skills: ['React', 'Framer Motion', 'Swiper.js', 'Custom CSS Animations', 'Flexbox/Grid', 'JavaScript'],
+                : `I focus on building interfaces that feel modern, clean, and effortless. Bukan sekadar ngerangkai elemen UI, tapi ngeracik pengalaman yang keliatan rapi, stabil, dan enak dipakai. Dari responsive layout yang fleksibel, dark mode yang elegan, sampai komponen interaktif yang nyatu sama alur pengguna. Intinya: bikin UI yang terasa modern tanpa lebay, dan tetap ringan di semua device.`,
+            skills: ['Responsive UI', 'Modern JavaScript', 'TailwindCSS Styling', 'UI Architecture', 'State Management', 'Reusable Components'],
             gradient: 'from-purple-500/20 to-pink-500/20'
         },
         {
@@ -58,13 +58,13 @@ export default function Services() {
             gradient: 'from-orange-500/20 to-yellow-500/20'
         },
         {
-icon: Layers,
-title: isMounted ? t('services.3.title') : 'Network & Automation Development',
-description: isMounted
-? t('services.3.description')
-: `I work on tools that help networks stay alive and monitored. Termasuk bikin sistem monitoring jaringan kampus yang jalan otomatis pakai Python untuk cek ping, port, status perangkat, terus ngirim datanya ke Laravel buat ditampilin di dashboard. Aku juga sering bikin automation kecil buat ngerapihin workflow, debug koneksi, atau ngejalanin proses server biar ga perlu manual.`,
-skills: ['Python Automation', 'Network Monitoring', 'CLI Tools', 'Laravel API', 'Infrastructure Flow', 'Background Jobs'],
-gradient: 'from-green-500/20 to-emerald-500/20'
+            icon: Layers,
+            title: isMounted ? t('services.3.title') : 'Network & Automation Development',
+            description: isMounted
+                ? t('services.3.description')
+                : `I work on tools that help networks stay alive and monitored. Termasuk bikin sistem monitoring jaringan kampus yang jalan otomatis pakai Python untuk cek ping, port, status perangkat, terus ngirim datanya ke Laravel buat ditampilin di dashboard. Aku juga sering bikin automation kecil buat ngerapihin workflow, debug koneksi, atau ngejalanin proses server biar ga perlu manual.`,
+            skills: ['Python Automation', 'Network Monitoring', 'CLI Tools', 'Laravel API', 'Mikrotik Winbox', 'Infrastructure Flow', 'Background Jobs'],
+            gradient: 'from-green-500/20 to-emerald-500/20'
         },
         {
             icon: Zap,
